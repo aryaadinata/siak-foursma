@@ -3,8 +3,8 @@
         <div class="card-header d-flex p-0">
             <h3 class="card-title p-3">Data Siswa</h3>
             <ul class="nav nav-pills ml-auto p-2">
-                <li class="nav-item btn-primary"><a href="" class="nav-link tomboltambah" style="color:aliceblue"><i class="fas fa-plus"></i> Tambah</a></li>
-                <li class="nav-item btn-info"><a href="/Admin/viewimport" class="nav-link" style="color:aliceblue"><i class="fas fa-download"></i> Import</a></li>
+                <li class="nav-item"><a href="" class="nav-link tomboltambah bg-primary btn btn-flat" style="color:aliceblue"><i class="fas fa-plus"></i> Tambah</a></li>
+                <li class="nav-item"><a href="/Admin/viewimport" class="nav-link bg-info btn btn-flat" style="color:aliceblue"><i class="fas fa-download"></i> Import</a></li>
             </ul>
         </div>
         <!-- /.card-header -->
@@ -36,8 +36,8 @@
                             <td class="tengah"><?= $row["nama_kelas"] ?></td>
                             <td class="tengah"><?= $row["tahun_masuk"] ?></td>
                             <td class="tengah">
-                                <button type="button" title="Edit" class="btn btn-info btn-xs" onclick="detail('<?= $row['nisn'] ?>')">detail</button>
-                                <button type="button" title="Hapus" class="btn btn-danger btn-xs" onclick="hapus('<?= $row['nisn'] ?>')">hapus</button>
+                                <button type="button" title="Edit" class="btn btn-flat btn-info btn-xs" onclick="detail('<?= $row['nisn'] ?>')">detail</button>
+                                <button type="button" title="Hapus" class="btn btn-flat btn-danger btn-xs" onclick="hapus('<?= $row['nisn'] ?>')">hapus</button>
                             </td>
                         </tr>
                     <?php endforeach; ?>

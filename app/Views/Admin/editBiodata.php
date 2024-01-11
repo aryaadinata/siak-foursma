@@ -32,14 +32,14 @@ if (!empty($session->getFlashdata('suksesupload'))) {
             <div class="form-group row">
                 <label for="" class="col-sm-4 col-form-label">NISN</label>
                 <div class="col-sm-8">
-                    <input type="number" class="form-control" placeholder="Masukkan NISN Siswa" value="<?= $siswa[0]["nisn"] ?>" readonly>
-                    <input type="hidden" name="nisn" id="nisn" value="<?= $siswa[0]["nisn"] ?>">
+                    <li class="nav-item"><input type="number" class="form-control" placeholder="Masukkan NISN Siswa" value="<?= $siswa[0]["nisn"] ?>" readonly></li>
+                    <li class="nav-item"><input type="hidden" name="nisn" id="nisn" value="<?= $siswa[0]["nisn"] ?>"></li>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="" class="col-sm-4 col-form-label">NIS</label>
                 <div class="col-sm-8">
-                    <input type="number" class="form-control" placeholder="Masukkan NIS Siswa" name="nis" value="<?= $siswa[0]["nis"] ?>">
+                    <input type="number" class="form-control" placeholder="Masukkan NIS Siswa" name="nis" value="<?= $siswa[0]["nis"] ?>" id="nis">
                     <div class="invalid-feedback errorNis"></div>
                 </div>
             </div>

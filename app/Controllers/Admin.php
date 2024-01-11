@@ -381,6 +381,15 @@ class Admin extends BaseController
                             'is_unique' => '{field} sudah terdaftar !',
                         ]
                     ],
+                    'email' => [
+                        'label' => "Email",
+                        'rules' => "required|is_unique[siswa.email]|valid_email",
+                        'errors' => [
+                            'required' => '{field} wajib diisi !',
+                            'is_unique' => '{field} sudah terdaftar !',
+                            'valid_email' => "{field} tidak valid"
+                        ]
+                    ],
                     'nama_siswa' => [
                         'label' => "Nama Siswa",
                         'rules' => "required",
@@ -410,6 +419,7 @@ class Admin extends BaseController
                         'nisn' => $validation->getError('nisn'),
                         'nis' => $validation->getError('nis'),
                         'nik' => $validation->getError('nik'),
+                        'email' => $validation->getError('email'),
                         'nama_siswa' => $validation->getError('nama_siswa'),
                         'kelas' => $validation->getError('kelas'),
                         'tahun_masuk' => $validation->getError('tahun_masuk'),
@@ -427,6 +437,7 @@ class Admin extends BaseController
                     'agama' => $this->request->getVar('agama'),
                     'alamat' => $this->request->getVar('alamat'),
                     'no_hp' => $this->request->getVar('no_hp'),
+                    'email' => $this->request->getVar('email'),
                     'alamat_ortu' => $this->request->getVar('alamat_ortu'),
                     'nama_ayah' => $this->request->getVar('nama_ayah'),
                     'nama_ibu' => $this->request->getVar('nama_ibu'),
@@ -585,7 +596,7 @@ class Admin extends BaseController
             $valid = $this->validate([
                 'nis' => [
                     'label' => "NIS",
-                    'rules' => "required|is_unique[siswa.nis,nis,{nis}]",
+                    'rules' => "required|is_unique[siswa.nis,nisn,{nisn}]",
                     'errors' => [
                         'required' => '{field} tidak boleh kosong',
                         'is_unique' => '{field} sudah terdaftar !',
@@ -1163,7 +1174,7 @@ class Admin extends BaseController
                     $siswa->update($nisn[$i], $naikkelas);
                 }
                 $msg = [
-                    'sukses' => 'Proses berhasil !'
+                    'sukses' => 'Berhasil mengeluarkan siswa dari rombel !'
                 ];
             }
             echo json_encode($msg);
@@ -1210,7 +1221,7 @@ class Admin extends BaseController
                     $siswa->update($nisn[$i], $naikkelas);
                 }
                 $msg = [
-                    'sukses' => 'Proses pengembalian berhasil !'
+                    'sukses' => 'Berhasil memasukkan siswa ke dalam rombel !'
                 ];
             }
             echo json_encode($msg);

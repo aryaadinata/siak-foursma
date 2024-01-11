@@ -22,8 +22,8 @@ if (!empty($session->getFlashdata('suksesupload'))) {
         <div class="card-header d-flex p-0">
             <h3 class="card-title p-3"><i class="fas fa-user" style="color: #1b3e72;"></i> Biodata Siswa</h3>
             <ul class="nav nav-pills ml-auto p-2">
-                <a href="#" class="nav-link bg-gray" onclick=datasiswa()><i class=" fas fa-arrow-left"></i> Kembali</a>
-                <a href="#" class="nav-link bg-pink tomboledit" onclick=edit(<?= $siswa[0]["nisn"] ?>)><i class=" fas fa-pencil-alt"></i> Edit Biodata</a>
+                <li class="nav-item"><a href="#" class="nav-link bg-gray" onclick=datasiswa()><i class=" fas fa-arrow-left"></i> Kembali</a></li>
+                <li class="nav-item"><a href="#" class="nav-link bg-pink tomboledit" onclick=edit(<?= $siswa[0]["nisn"] ?>)><i class=" fas fa-pencil-alt"></i> Edit Biodata</a></li>
             </ul>
         </div>
         <div class="card-body p-0">

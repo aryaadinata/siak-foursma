@@ -20,11 +20,14 @@ class Dashboard extends BaseController
         $jmlSiswa = $jmlSiswa->getResultArray();
         $jmlSiswa0 = $this->db->query("SELECT COUNT(nisn) as jml FROM siswa WHERE status_aktif=1");
         $jmlSiswa0 = $jmlSiswa0->getResultArray();
+        $jmlGuru = $this->db->query("SELECT COUNT(nik_ptk) as jml FROM ptk WHERE jenis_ptk=0");
+        $jmlGuru = $jmlGuru->getResultArray();
         $data = [
             'title' => "Dashboard",
             'userInfo' => $userInfo,
             'jmlsiswa' => $jmlSiswa,
             'jmlsiswa0' => $jmlSiswa0,
+            'jmlguru' => $jmlGuru,
         ];
         echo view('Layout/header', $data);
         echo view('Layout/sidebar', $data);

@@ -3,8 +3,8 @@
         <div class="card-header d-flex p-0">
             <h3 class="card-title p-3">Data Guru</h3>
             <ul class="nav nav-pills ml-auto p-2">
-                <li class="nav-item btn-primary"><a href="" class="nav-link tomboltambah" style="color:aliceblue"><i class="fas fa-plus"></i> Tambah</a></li>
-                <li class="nav-item btn-info"><a href="/Admin/viewimport" class="nav-link" style="color:aliceblue"><i class="fas fa-download"></i> Import</a></li>
+                <li class="nav-item"><a href="" class="nav-link tomboltambah btn btn-flat bg-primary" style="color:aliceblue"><i class="fas fa-plus"></i> Tambah</a></li>
+                <li class="nav-item"><a href="/importguru" class="nav-link btn btn-flat bg-info" style="color:aliceblue"><i class="fas fa-download"></i> Import</a></li>
             </ul>
         </div>
         <!-- /.card-header -->
@@ -15,27 +15,33 @@
                         <th class="no-sorting">No</th>
                         <th>NIK</th>
                         <th>Nama</th>
-                        <th>NIP</th>
-                        <th>Tempat, Tanggal Lahir</th>
+                        <th>NIP / NIPPPK</th>
+                        <th>NUPTK</th>
                         <th>Status Kepegawaian</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $no = 0;
+                    <?php
+
+                    use PhpParser\Node\Stmt\Echo_;
+
+                    $no = 0;
                     foreach ($guru as $row) :
                         $no++;
                     ?>
                         <tr>
                             <td class="tengah"><?= $no ?></td>
                             <td class="tengah"><?= $row["nik_ptk"] ?></td>
-                            <td><?= $row["nama_ptk"] ?></td>
+                            <td><?php if ($row["gelar_depan"] != "") echo $row["gelar_depan"] . ". ";
+                                echo $row["nama_ptk"];
+                                if ($row["gelar_belakang"] != "") echo ", " . $row["gelar_belakang"] ?></td>
                             <td class="tengah"><?= $row["nip"] ?></td>
-                            <td class="tengah">tes</td>
+                            <td class="tengah"><?= $row["nuptk"] ?></td>
                             <td class="tengah"><?= $row["status_pegawai"] ?></td>
                             <td class="tengah">
-                                <button type="button" title="Edit" class="btn btn-info btn-xs" onclick="detail('<?= $row['nik_ptk'] ?>')">detail</button>
-                                <button type="button" title="Hapus" class="btn btn-danger btn-xs" onclick="hapus('<?= $row['nik_ptk'] ?>')">hapus</button>
+                                <a href="<?= base_url() ?>/lihatguru/<?= $row["nik_ptk"] ?>" type="button" title="Edit" class="btn btn-flat btn-info btn-xs">detail</a>
+                                <button type="button" title="Hapus" class="btn btn-flat btn-danger btn-xs" onclick="hapus('<?= $row['nik_ptk'] ?>')">hapus</button>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -62,7 +68,7 @@
                     $(".tomboltambah").removeAttr("disabled");
                     $(".tomboltambah").html('<i class="fas fa-plus"></i> Tambah</a>');
                     $('.viewmodal').html(response.data).show();
-                    $('#modaltambahsiswa').modal('show');
+                    $('#modaltambahguru').modal('show');
                 }
 
             });

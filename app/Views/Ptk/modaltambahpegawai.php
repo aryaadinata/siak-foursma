@@ -1,13 +1,13 @@
-<div class="modal fade" id="modaltambahguru">
+<div class="modal fade" id="modaltambahpegawai">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Tambah Guru</h4>
+                <h4 class="modal-title">Tambah Pegawai</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <?= form_open("Ptk/inputguru", ["class" => "formguru"]) ?>
+            <?= form_open("Ptk/inputpegawai", ["class" => "formpegawai"]) ?>
             <?= csrf_field(); ?>
             <div class="modal-body">
                 <div class="form-group row">
@@ -42,11 +42,9 @@
                         <select class="form-control" name="status_pegawai" id="status_pegawai">
                             <option value="" selected disabled>--Pilih Status Kepegawaian--</option>
                             <option value="PNS">PNS</option>
-                            <option value="PNS Depag">PNS Depag</option>
-                            <option value="PNS Diperbantukan">PNS Diperbantukan</option>
                             <option value="PPPK">PPPK</option>
-                            <option value="Honor Daerah TK.I Provinsi">Honor Daerah TK.I Provinsi</option>Honor Daerah TK.I Provinsi
-                            <option value="Honorer">Guru Honor Sekolah</option>
+                            <option value="Kontrak Provinsi">Kontrak Provinsi</option>
+                            <option value="Honorer">Honorer</option>
                         </select>
                         <div class="invalid-feedback errorStatusPegawai"></div>
                     </div>
@@ -136,7 +134,7 @@
     <!-- /.modal -->
     <script>
         $(document).ready(function() {
-            $('.formguru').submit(function(e) {
+            $('.formpegawai').submit(function(e) {
                 e.preventDefault();
                 $.ajax({
                     type: "post",
@@ -217,7 +215,7 @@
                                 $(".errorEmail").html('');
                             }
                         } else {
-                            $('#modaltambahguru').modal('hide');
+                            $('#modaltambahpegawai').modal('hide');
                             Swal.fire({
                                 position: 'top',
                                 toast: 'false',
@@ -227,7 +225,7 @@
                                 showConfirmButton: false,
                                 timer: 3000
                             });
-                            dataguru();
+                            datapegawai();
                         }
                     },
                     error: function(xhr, ajaxOption, trhownError) {

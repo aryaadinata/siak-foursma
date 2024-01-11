@@ -25,8 +25,8 @@
                     <?php endif ?>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-warning btn-xs" onclick="edit('<?= $row['id_tahun'] ?>')"><i class="fas fa-pencil-alt"></i></button>
-                    <button type="button" class="btn btn-danger btn-xs" onclick="hapus(<?php echo $row['id_tahun'] . ',' . $row['status']; ?>)"><i class="fas fa-trash-alt"></i></button>
+                    <button type="button" class="btn btn-flat btn-warning btn-xs" onclick="edit('<?= $row['id_tahun'] ?>')">Edit</button>
+                    <button type="button" class="btn btn-flat btn-danger btn-xs" onclick="hapus(<?php echo $row['id_tahun'] . ',' . $row['status']; ?>)">Hapus</button>
                 </td>
             </tr>
         <?php endforeach; ?>

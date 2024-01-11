@@ -15,8 +15,8 @@
                 <td><?= $no ?></td>
                 <td><?= $row["nama_jurusan"] ?></td>
                 <td>
-                    <a type="button" class="btn btn-warning btn-xs" onclick="edit('<?= $row['id_jurusan'] ?>')">edit</i></a>
-                    <a type="button" class="btn btn-danger btn-xs" onclick="hapus('<?= $row['id_jurusan'] ?>')">hapus</i></a>
+                    <a type="button" class="btn btn-flat btn-warning btn-xs" onclick="edit('<?= $row['id_jurusan'] ?>')">edit</i></a>
+                    <a type="button" class="btn btn-flat btn-danger btn-xs" onclick="hapus('<?= $row['id_jurusan'] ?>')">hapus</i></a>
                 </td>
             </tr>
         <?php endforeach; ?>

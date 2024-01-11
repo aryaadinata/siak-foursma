@@ -26,7 +26,7 @@
                   <li class="nav-header">MENU</li>
                   <li class="nav-item">
                       <?php $uri = current_url(true); ?>
-                      <a href="/Dashboard" class="nav-link <?php if ($uri->getSegment(2) == '') echo 'active';
+                      <a href="/Dashboard" class="nav-link <?php if ($uri->getSegment(1) == 'Dashboard') echo 'active';
                                                             else  echo '' ?>">
                           <i class="nav-icon fas fa-tachometer-alt"></i>
                           <p>
@@ -34,9 +34,9 @@
                           </p>
                       </a>
                   </li>
-                  <li class="nav-item <?php if ($uri->getSegment(1) == 'Ptk') echo 'menu-open';
+                  <li class="nav-item <?php if ($uri->getSegment(1) == 'lihatguru' || $uri->getSegment(1) == 'dataguru' || $uri->getSegment(1) == 'lihatpegawai' || $uri->getSegment(1) == 'datapegawai' || $uri->getSegment(1) == 'importguru' || $uri->getSegment(1) == 'importpegawai') echo 'menu-open';
                                         else  echo '' ?>">
-                      <a href="#" class="nav-link <?php if ($uri->getSegment(1) == 'Ptk') echo 'active';
+                      <a href="#" class="nav-link <?php if ($uri->getSegment(1) == 'lihatguru' || $uri->getSegment(1) == 'dataguru' || $uri->getSegment(1) == 'lihatpegawai' || $uri->getSegment(1) == 'datapegawai' || $uri->getSegment(1) == 'importguru' || $uri->getSegment(1) == 'importpegawai') echo 'active';
                                                     else  echo '' ?>">
                           <i class="nav-icon fas fa-user-tie"></i>
                           <p>
@@ -46,17 +46,15 @@
                       </a>
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
-                              <a href="<?php if ($uri->getSegment(2) != 'data_guru') echo base_url('/Ptk/data_guru/');
-                                        else echo '#' ?>" class="nav-link <?php if ($uri->getSegment(2) == 'data_guru' || $uri->getSegment(2) == 'viewimport') echo 'active';
-                                                                            else  echo '' ?>">
+                              <a href="<?= base_url('/dataguru') ?>" class="nav-link <?php if ($uri->getSegment(1) == 'dataguru' || $uri->getSegment(2) == 'viewimport' || $uri->getSegment(1) == 'lihatguru' || $uri->getSegment(1) == 'importguru') echo 'active';
+                                                                                        else  echo '' ?>">
                                   <i class="far fa-circle nav-icon"></i>
                                   <p>Guru</p>
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a href="<?php if ($uri->getSegment(2) != 'data_pegawai') echo base_url('/Ptk/data_pegawai/');
-                                        else echo '#' ?>" class="nav-link <?php if ($uri->getSegment(2) == 'data_pegawai') echo 'active';
-                                                                            else  echo '' ?>">
+                              <a href="<?= base_url('/datapegawai') ?>" class="nav-link <?php if ($uri->getSegment(1) == 'datapegawai' || $uri->getSegment(1) == 'lihatpegawai' || $uri->getSegment(1) == 'importpegawai') echo 'active';
+                                                                                        else  echo '' ?>">
                                   <i class="far fa-circle nav-icon"></i>
                                   <p>Pegawai</p>
                               </a>
@@ -75,33 +73,29 @@
                       </a>
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
-                              <a href="<?php if ($uri->getSegment(2) != 'identitas_sekolah') echo base_url('/Admin/identitas_sekolah/');
-                                        else echo '#' ?>" class="nav-link <?php if ($uri->getSegment(2) == 'identitas_sekolah') echo 'active';
-                                                                            else  echo '' ?>">
+                              <a href="<?= base_url('/Admin/identitas_sekolah/') ?>" class="nav-link <?php if ($uri->getSegment(2) == 'identitas_sekolah') echo 'active';
+                                                                                                        else  echo '' ?>">
                                   <i class="far fa-circle nav-icon"></i>
                                   <p>Identitas Sekolah</p>
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a href="<?php if ($uri->getSegment(2) != 'tahun_ajaran') echo base_url('/Admin/tahun_ajaran/');
-                                        else echo '#' ?>" class="nav-link <?php if ($uri->getSegment(2) == 'tahun_ajaran') echo 'active';
-                                                                            else  echo '' ?>">
+                              <a href="<?= base_url('/Admin/tahun_ajaran/') ?>" class="nav-link <?php if ($uri->getSegment(2) == 'tahun_ajaran') echo 'active';
+                                                                                                else  echo '' ?>">
                                   <i class="far fa-circle nav-icon"></i>
                                   <p>Tahun Ajaran</p>
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a href="<?php if ($uri->getSegment(2) != 'jurusan') echo base_url('/Admin/jurusan/');
-                                        else echo '#' ?>" class="nav-link <?php if ($uri->getSegment(2) == 'jurusan') echo 'active';
-                                                                            else  echo '' ?>">
+                              <a href="<?= base_url('/Admin/jurusan/') ?>" class="nav-link <?php if ($uri->getSegment(2) == 'jurusan') echo 'active';
+                                                                                            else  echo '' ?>">
                                   <i class="far fa-circle nav-icon"></i>
                                   <p>Jurusan | Peminatan</p>
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a href="<?php if ($uri->getSegment(2) != 'kelas') echo base_url('/Admin/kelas/');
-                                        else echo '#' ?>" class="nav-link <?php if ($uri->getSegment(2) == 'kelas') echo 'active';
-                                                                            else  echo '' ?>">
+                              <a href="<?= base_url('/Admin/kelas/') ?>" class="nav-link <?php if ($uri->getSegment(2) == 'kelas') echo 'active';
+                                                                                            else  echo '' ?>">
                                   <i class="far fa-circle nav-icon"></i>
                                   <p>Kelas</p>
                               </a>
@@ -120,33 +114,29 @@
                       </a>
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
-                              <a href="<?php if ($uri->getSegment(2) != 'data_siswa') echo base_url('/Admin/data_siswa/');
-                                        else echo '#' ?>" class="nav-link <?php if ($uri->getSegment(2) == 'data_siswa' || $uri->getSegment(2) == 'viewimport') echo 'active';
-                                                                            else  echo '' ?>">
+                              <a href="<?= base_url('/Admin/data_siswa/') ?>" class="nav-link <?php if ($uri->getSegment(2) == 'data_siswa' || $uri->getSegment(2) == 'viewimport') echo 'active';
+                                                                                                else  echo '' ?>">
                                   <i class="far fa-circle nav-icon"></i>
                                   <p>Siswa</p>
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a href="<?php if ($uri->getSegment(2) != 'kenaikan') echo base_url('/Admin/kenaikan/');
-                                        else echo '#' ?>" class="nav-link <?php if ($uri->getSegment(2) == 'kenaikan') echo 'active';
-                                                                            else  echo '' ?>">
+                              <a href="<?= base_url('/Admin/kenaikan/') ?>" class="nav-link <?php if ($uri->getSegment(2) == 'kenaikan') echo 'active';
+                                                                                            else  echo '' ?>">
                                   <i class="far fa-circle nav-icon"></i>
                                   <p>Rombel</p>
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a href="<?php if ($uri->getSegment(2) != 'kelulusan') echo base_url('/Admin/kelulusan/');
-                                        else echo '#' ?>" class="nav-link <?php if ($uri->getSegment(2) == 'kelulusan') echo 'active';
-                                                                            else  echo '' ?>">
+                              <a href="<?= base_url('/Admin/kelulusan/') ?>" class="nav-link <?php if ($uri->getSegment(2) == 'kelulusan') echo 'active';
+                                                                                                else  echo '' ?>">
                                   <i class="far fa-circle nav-icon"></i>
                                   <p>Kelulusan</p>
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a href="<?php if ($uri->getSegment(2) != 'keluar') echo base_url('/Admin/keluar/');
-                                        else echo '#' ?>" class="nav-link <?php if ($uri->getSegment(2) == 'keluar') echo 'active';
-                                                                            else  echo '' ?>">
+                              <a href="<?= base_url('/Admin/keluar/') ?>" class="nav-link <?php if ($uri->getSegment(2) == 'keluar') echo 'active';
+                                                                                            else  echo '' ?>">
                                   <i class="far fa-circle nav-icon"></i>
                                   <p>Siswa Keluar</p>
                               </a>
@@ -165,76 +155,28 @@
                       </a>
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
-                              <a href="<?php if ($uri->getSegment(2) != 'user_admin') echo base_url('/User/user_admin/');
-                                        else echo '#' ?>" class="nav-link <?php if ($uri->getSegment(2) == 'user_admin' || $uri->getSegment(2) == 'viewimport') echo 'active';
-                                                                            else  echo '' ?>">
+                              <a href="#" class="nav-link <?php if ($uri->getSegment(2) == 'user_admin' || $uri->getSegment(2) == 'viewimport') echo 'active';
+                                                            else  echo '' ?>">
                                   <i class="far fa-circle nav-icon"></i>
                                   <p>Admin</p>
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a href="<?php if ($uri->getSegment(2) != 'ptk') echo base_url('/User/user_ptk/');
-                                        else echo '#' ?>" class="nav-link <?php if ($uri->getSegment(2) == 'user_ptk') echo 'active';
-                                                                            else  echo '' ?>">
+                              <a href="#" class="nav-link <?php if ($uri->getSegment(2) == 'user_ptk') echo 'active';
+                                                            else  echo '' ?>">
                                   <i class="far fa-circle nav-icon"></i>
                                   <p>User PTK</p>
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a href="<?php if ($uri->getSegment(2) != 'user_siswa') echo base_url('/User/user_siswa/');
-                                        else echo '#' ?>" class="nav-link <?php if ($uri->getSegment(2) == 'user_siswa') echo 'active';
-                                                                            else  echo '' ?>">
+                              <a href="#" class="nav-link <?php if ($uri->getSegment(2) == 'user_siswa') echo 'active';
+                                                            else  echo '' ?>">
                                   <i class="far fa-circle nav-icon"></i>
                                   <p>User Siswa</p>
                               </a>
                           </li>
                       </ul>
                   </li>
-                  <!-- <li class="nav-item">
-                      <a href="#" class="nav-link">
-                          <i class="nav-icon fas fa-wallet"></i>
-                          <p>
-                              Transaksi
-                              <i class="right fas fa-angle-left"></i>
-                          </p>
-                      </a>
-                      <ul class="nav nav-treeview">
-                          <li class="nav-item">
-                              <a href="<?php //if ($uri->getSegment(2) != 'tagihan') echo base_url('/Transaksi/tagihan/');
-                                        //else echo '#' 
-                                        ?>" class="nav-link <?php //if ($uri->getSegment(2) == 'tagihan') echo 'active';
-                                                            //else  echo '' 
-                                                            ?>" class="nav-link">
-                                  <i class="far fa-circle nav-icon"></i>
-                                  <p>Tagihan SPP</p>
-                              </a>
-                          </li>
-                          <li class="nav-item">
-                              <a href="#" class="nav-link">
-                                  <i class="far fa-circle nav-icon"></i>
-                                  <p>Pembayaran SPP</p>
-                              </a>
-                          </li>
-                          <li class="nav-item">
-                              <a href="#" class="nav-link">
-                                  <i class="far fa-circle nav-icon"></i>
-                                  <p>Pemasukan</p>
-                              </a>
-                          </li>
-                          <li class="nav-item">
-                              <a href="#" class="nav-link">
-                                  <i class="far fa-circle nav-icon"></i>
-                                  <p>Pengeluaran</p>
-                              </a>
-                          </li>
-                          <li class="nav-item">
-                              <a href="#" class="nav-link">
-                                  <i class="far fa-circle nav-icon"></i>
-                                  <p>Siswa</p>
-                              </a>
-                          </li>
-                      </ul>
-                  </li> -->
                   <li class="nav-item">
                       <a href="#" class="nav-link">
                           <i class="nav-icon fas fa-cogs"></i>

@@ -100,8 +100,15 @@
                 <div class="form-group row">
                     <label for="" class="col-sm-4 col-form-label">No. HP</label>
                     <div class="col-sm-8">
-                        <input type="number" class="form-control" placeholder="Masukkan Nomor HP Siswa" name="no_hp" id="no_hp">
+                        <input type="number" class="form-control" placeholder="Masukkan Nomor HP aktif" name="no_hp" id="no_hp">
                         <div class="invalid-feedback errorNoHP"></div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="" class="col-sm-4 col-form-label">Email</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" placeholder="Masukkan Email aktif" name="email" id="email">
+                        <div class="invalid-feedback errorEmail"></div>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -190,6 +197,13 @@
                         } else {
                             $("#nik").removeClass("is-invalid");
                             $(".errorNIK").html('');
+                        }
+                        if (response.error.email) {
+                            $("#email").addClass("is-invalid");
+                            $(".errorEmail").html(response.error.email);
+                        } else {
+                            $("#email").removeClass("is-invalid");
+                            $(".errorEmail").html('');
                         }
                         if (response.error.nama_siswa) {
                             $("#nama_siswa").addClass("is-invalid");

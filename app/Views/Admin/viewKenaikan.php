@@ -53,8 +53,8 @@
              <!-- /.card-header -->
              <div class="card-body row">
                <div class="col-md-12">
-                 <button type="button" class="btn btn-danger btn-block btnnaik">Keluarkan <i class="fa fa-arrow-right"></i></button>
-                 <button type="button" class="btn btn-primary btn-block btnkembali"><i class="fa fa-arrow-left"></i> Masukkan</button>
+                 <button type="button" class="btn btn-flat btn-danger btn-block btnnaik">Keluarkan <i class="fa fa-arrow-right"></i></button>
+                 <button type="button" class="btn btn-flat btn-primary btn-block btnkembali"><i class="fa fa-arrow-left"></i> Masukkan</button>
                </div>
                <!-- <div class="col-md-2">
                </div> -->

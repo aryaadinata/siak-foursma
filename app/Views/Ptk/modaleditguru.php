@@ -1,8 +1,8 @@
-<div class="modal fade" id="modaltambahguru">
+<div class="modal fade" id="modaleditguru">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Tambah Guru</h4>
+                <h4 class="modal-title">Edit Guru</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -13,14 +13,15 @@
                 <div class="form-group row">
                     <label for="" class="col-sm-4 col-form-label">NIK</label>
                     <div class="col-sm-8">
-                        <input type="number" class="form-control" placeholder="Masukkan NIK" name="nik" id="nik">
-                        <div class="invalid-feedback errorNIK"></div>
+                        <input type="number" class="form-control" placeholder="Masukkan NIK" id="nik" readonly>
+                        <input type="hidden" name="nik" value="<?= $ptk[0]["nik"] ?>" id="">
+                        <!-- <div class="invalid-feedback errorNIK"></div> -->
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="" class="col-sm-4 col-form-label">Nama</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" placeholder="Masukkan Nama Lengkap Siswa" name="nama_ptk" id="nama_ptk">
+                        <input type="text" class="form-control" placeholder="Masukkan Nama Lengkap Siswa" name="nama_ptk" value="<?= $ptk[0]["nama_ptk"] ?>" id="nama_ptk">
                         <div class="invalid-feedback errorNamaPtk"></div>
                     </div>
                 </div>
@@ -40,13 +41,11 @@
                     <label for="" class="col-sm-4 col-form-label">Status Kepegawaian</label>
                     <div class="col-sm-8">
                         <select class="form-control" name="status_pegawai" id="status_pegawai">
-                            <option value="" selected disabled>--Pilih Status Kepegawaian--</option>
+                            <option value="" selected>--Pilih Status Kepegawaian--</option>
                             <option value="PNS">PNS</option>
-                            <option value="PNS Depag">PNS Depag</option>
-                            <option value="PNS Diperbantukan">PNS Diperbantukan</option>
                             <option value="PPPK">PPPK</option>
-                            <option value="Honor Daerah TK.I Provinsi">Honor Daerah TK.I Provinsi</option>Honor Daerah TK.I Provinsi
-                            <option value="Honorer">Guru Honor Sekolah</option>
+                            <option value="Kontrak Provinsi">Kontrak Provinsi</option>
+                            <option value="Honorer">Honorer</option>
                         </select>
                         <div class="invalid-feedback errorStatusPegawai"></div>
                     </div>
@@ -60,8 +59,7 @@
                 <div class="form-group row">
                     <label for="" class="col-sm-4 col-form-label">NUPTK</label>
                     <div class="col-sm-8">
-                        <input type="number" class="form-control" placeholder="Kosongkan jika tidak ada" name="nuptk" id="nuptk">
-                        <div class="invalid-feedback errorNUPTK"></div>
+                        <input type="number" class="form-control" placeholder="Kosongkan jika tidak ada" name="nuptk">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -174,13 +172,6 @@
                                 $("#status_pegawai").removeClass("is-invalid");
                                 $(".errorStatusPegawai").html('');
                             }
-                            if (response.error.nuptk) {
-                                $("#nuptk").addClass("is-invalid");
-                                $(".errorNUPTK").html(response.error.nuptk);
-                            } else {
-                                $("#nuptk").removeClass("is-invalid");
-                                $(".errorNUPTK").html('');
-                            }
                             if (response.error.tempat_lahir) {
                                 $("#tempat_lahir").addClass("is-invalid");
                                 $(".errorTempatLahir").html(response.error.tempat_lahir);
@@ -227,7 +218,7 @@
                                 showConfirmButton: false,
                                 timer: 3000
                             });
-                            dataguru();
+                            dataptk();
                         }
                     },
                     error: function(xhr, ajaxOption, trhownError) {
@@ -237,4 +228,24 @@
                 return false;
             });
         });
+    </script>
+    <script>
+        function tahunmasuk() {
+            var tahun = parseInt(document.getElementById("tahun_masuk").value);
+            const d = new Date();
+            let year = d.getFullYear();
+            if (tahun > year) {
+                $(".btnsimpan").attr("disabled", "disable");
+                $("#tahun_masuk").addClass("is-invalid");
+                $(".errorTahunMasuk").html("Tidak boleh Lebih dari tahun saat ini");
+            } else if (tahun < year - 3) {
+                $(".btnsimpan").attr("disabled", "disable");
+                $("#tahun_masuk").addClass("is-invalid");
+                $(".errorTahunMasuk").html("Tahun yang dimasukkan sudah lewat 3 tahun");
+            } else {
+                $(".btnsimpan").removeAttr("disabled");
+                $("#tahun_masuk").removeClass("is-invalid");
+                $(".errorTahunMasuk").html("");
+            }
+        }
     </script>

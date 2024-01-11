@@ -3,8 +3,8 @@
         <div class="card-header d-flex p-0">
             <h3 class="card-title p-3">Data Pegawai</h3>
             <ul class="nav nav-pills ml-auto p-2">
-                <li class="nav-item btn-primary"><a href="" class="nav-link tomboltambah" style="color:aliceblue"><i class="fas fa-plus"></i> Tambah</a></li>
-                <li class="nav-item btn-info"><a href="/Admin/viewimport" class="nav-link" style="color:aliceblue"><i class="fas fa-download"></i> Import</a></li>
+                <li class="nav-item"><a href="" class="nav-link bg-primary btn btn-flat tomboltambah" style="color:aliceblue"><i class="fas fa-plus"></i> Tambah</a></li>
+                <li class="nav-item"><a href="/importpegawai" class="nav-link bg-info btn btn-flat" style="color:aliceblue"><i class="fas fa-download"></i> Import</a></li>
             </ul>
         </div>
         <!-- /.card-header -->
@@ -15,8 +15,7 @@
                         <th class="no-sorting">No</th>
                         <th>NIK</th>
                         <th>Nama</th>
-                        <th>NIP</th>
-                        <th>Tempat, Tanggal Lahir</th>
+                        <th>NIP / NIPPPK</th>
                         <th>Status Kepegawaian</th>
                         <th>Actions</th>
                     </tr>
@@ -31,11 +30,10 @@
                             <td class="tengah"><?= $row["nik_ptk"] ?></td>
                             <td><?= $row["nama_ptk"] ?></td>
                             <td class="tengah"><?= $row["nip"] ?></td>
-                            <td class="tengah">tes</td>
                             <td class="tengah"><?= $row["status_pegawai"] ?></td>
                             <td class="tengah">
-                                <button type="button" title="Edit" class="btn btn-info btn-xs" onclick="detail('<?= $row['nik_ptk'] ?>')">detail</button>
-                                <button type="button" title="Hapus" class="btn btn-danger btn-xs" onclick="hapus('<?= $row['nik_ptk'] ?>')">hapus</button>
+                                <a href="<?= base_url() ?>/lihatpegawai/<?= $row["nik_ptk"] ?>" type="button" title="Detail" class="btn btn-flat btn-info btn-xs">detail</a>
+                                <button type="button" title="Hapus" class="btn btn-flat btn-danger btn-xs" onclick="hapus('<?= $row['nik_ptk'] ?>')">hapus</button>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -52,7 +50,7 @@
             e.preventDefault();
             $.ajax({
                 type: "post",
-                url: "<?= site_url('Admin/formtambahsiswa') ?>",
+                url: "<?= site_url('Ptk/formtambahpegawai') ?>",
                 dataType: "json",
                 beforeSend: function() {
                     $(".tomboltambah").attr("disabled", "disable");
@@ -62,7 +60,7 @@
                     $(".tomboltambah").removeAttr("disabled");
                     $(".tomboltambah").html('<i class="fas fa-plus"></i> Tambah</a>');
                     $('.viewmodal').html(response.data).show();
-                    $('#modaltambahsiswa').modal('show');
+                    $('#modaltambahpegawai').modal('show');
                 }
 
             });

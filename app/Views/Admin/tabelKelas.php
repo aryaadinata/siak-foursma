@@ -21,9 +21,9 @@
                 <td class="tengah"><?= $row["nama_jurusan"] ?></td>
                 <td><?= $row["nama_ptk"] ?></td>
                 <td class="tengah">
-                    <a type="button" class="btn btn-info btn-xs" onclick="siswa('<?= $row['id_kelas'] ?>')">anggota</a>
-                    <a type="button" class="btn btn-warning btn-xs" onclick="edit('<?= $row['id_kelas'] ?>')">edit</i></a>
-                    <a type="button" class="btn btn-danger btn-xs" onclick="hapus('<?= $row['id_kelas'] ?>')">hapus</i></a>
+                    <a type="button" class="btn btn-flat btn-info btn-xs" onclick="siswa('<?= $row['id_kelas'] ?>')">anggota</a>
+                    <a type="button" class="btn btn-flat btn-warning btn-xs" onclick="edit('<?= $row['id_kelas'] ?>')">edit</i></a>
+                    <a type="button" class="btn btn-flat btn-danger btn-xs" onclick="hapus('<?= $row['id_kelas'] ?>')">hapus</i></a>
                 </td>
             </tr>
         <?php endforeach; ?>

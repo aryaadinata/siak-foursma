@@ -117,7 +117,7 @@
            <!-- small box -->
            <div class="small-box bg-warning">
              <div class="inner">
-               <h3>80</h3>
+               <h3><?= $jmlguru[0]["jml"] ?></h3>
 
                <p>Jumlah Guru</p>
              </div>

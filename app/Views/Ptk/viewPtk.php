@@ -51,12 +51,12 @@
      })
 
 
-     function detail(nisn) {
+     function detail(nik) {
        $.ajax({
          type: "post",
-         url: "<?= site_url('Admin/ambilbiodata') ?>",
+         url: "<?= site_url('Ptk/ambildetailguru') ?>",
          data: {
-           nisn: nisn
+           nik: nik
          },
          dataType: "json",
          beforeSend: function() {
@@ -75,66 +75,66 @@
        });
      }
 
-     function edit(nisn) {
+     function hapus(nik) {
        $.ajax({
          type: "post",
-         url: "<?= site_url('Admin/formeditbiodata') ?>",
+         url: "<?= site_url('Ptk/cekhapusguru') ?>",
          data: {
-           nisn: nisn
+           wali: nik
          },
          dataType: "json",
          success: function(response) {
-           if (response.data) {
-             $('.viewdata').html(response.data);
+           if (response.error) {
+             if (response.error.wali) {
+               Swal.fire({
+                 icon: 'error',
+                 title: 'Peringatan',
+                 text: response.error.wali,
+                 showConfirmButton: true,
+               });
+             }
+           } else {
+             Swal.fire({
+               title: `Yakin Hapus Guru ?`,
+               text: 'Guru yang terhapus tidak dapat dikembalikan !',
+               icon: 'warning',
+               showCancelButton: true,
+               confirmButtonColor: '#3085d6',
+               cancelButtonColor: '#d33',
+               confirmButtonText: 'Hapus',
+               cancelButtonText: 'Batal',
+             }).then((result) => {
+               if (result.isConfirmed) {
+                 $.ajax({
+                   type: "post",
+                   url: "<?= site_url('Ptk/hapusptk') ?>",
+                   data: {
+                     nik: nik
+                   },
+                   dataType: "json",
+                   success: function(response) {
+                     if (response.sukses) {
+                       Swal.fire({
+                         position: 'top',
+                         toast: 'false',
+                         icon: 'success',
+                         title: response.sukses,
+                         showConfirmButton: false,
+                         timer: 3000
+                       });
+                       dataguru();
+                     }
+                   },
+                   error: function(xhr, ajaxOption, trhownError) {
+                     alert(xhr.status + "\n" + xhr.responseText + "\n" + trhownError);
+                   }
+                 })
+               }
+             })
            }
-         },
-         complete: function() {
-           $(".tomboledit").removeClass("bg-pink").addClass("bg-gray");
-           $(".tomboledit").attr("onclick", "detail(" + nisn + ")");
-           $(".tomboledit").html("<i class='fa fa-ban'></i> Batal Edit");
          },
          error: function(xhr, ajaxOption, trhownError) {
            alert(xhr.status + "\n" + xhr.responseText + "\n" + trhownError);
-         }
-       })
-     }
-
-     function hapus(nisn) {
-       Swal.fire({
-         title: `Yakin Hapus ${nisn} ?`,
-         text: 'Data yang terhapus tidak dapat dikembalikan !',
-         icon: 'warning',
-         showCancelButton: true,
-         confirmButtonColor: '#3085d6',
-         cancelButtonColor: '#d33',
-         confirmButtonText: 'Hapus',
-         cancelButtonText: 'Batal',
-       }).then((result) => {
-         if (result.isConfirmed) {
-           $.ajax({
-             type: "post",
-             url: "<?= site_url('Admin/hapusguru') ?>",
-             data: {
-               nisn: nisn
-             },
-             dataType: "json",
-             success: function(response) {
-               if (response.sukses) {
-                 Swal.fire({
-                   position: 'top',
-                   toast: 'false',
-                   icon: 'success',
-                   title: response.sukses,
-                   showConfirmButton: false,
-                   timer: 3000
-                 });
-                 dataguru();
-               }
-             },
-             error: function(xhr, ajaxOption, trhownError) {
-               alert(xhr.status + "\n" + xhr.responseText + "\n" + trhownError);
-             }
-           })
          }
        })
      }
@@ -160,12 +160,12 @@
      })
 
 
-     function detail(nisn) {
+     function detail(nik) {
        $.ajax({
          type: "post",
          url: "<?= site_url('Admin/ambilbiodata') ?>",
          data: {
-           nisn: nisn
+           nik: nisn
          },
          dataType: "json",
          beforeSend: function() {
@@ -184,33 +184,9 @@
        });
      }
 
-     function edit(nisn) {
-       $.ajax({
-         type: "post",
-         url: "<?= site_url('Admin/formeditbiodata') ?>",
-         data: {
-           nisn: nisn
-         },
-         dataType: "json",
-         success: function(response) {
-           if (response.data) {
-             $('.viewdata').html(response.data);
-           }
-         },
-         complete: function() {
-           $(".tomboledit").removeClass("bg-pink").addClass("bg-gray");
-           $(".tomboledit").attr("onclick", "detail(" + nisn + ")");
-           $(".tomboledit").html("<i class='fa fa-ban'></i> Batal Edit");
-         },
-         error: function(xhr, ajaxOption, trhownError) {
-           alert(xhr.status + "\n" + xhr.responseText + "\n" + trhownError);
-         }
-       })
-     }
-
-     function hapus(nisn) {
+     function hapus(nik) {
        Swal.fire({
-         title: `Yakin Hapus ${nisn} ?`,
+         title: `Yakin Hapus pegawai ?`,
          text: 'Data yang terhapus tidak dapat dikembalikan !',
          icon: 'warning',
          showCancelButton: true,
@@ -222,9 +198,9 @@
          if (result.isConfirmed) {
            $.ajax({
              type: "post",
-             url: "<?= site_url('Admin/hapusguru') ?>",
+             url: "<?= site_url('Ptk/hapusptk') ?>",
              data: {
-               nisn: nisn
+               nik: nik
              },
              dataType: "json",
              success: function(response) {
@@ -237,7 +213,7 @@
                    showConfirmButton: false,
                    timer: 3000
                  });
-                 dataguru();
+                 datapegawai();
                }
              },
              error: function(xhr, ajaxOption, trhownError) {
