@@ -7,7 +7,7 @@ use App\Models\UserModel;
 use App\Models\JurusanModel;
 use App\Models\KelasModel;
 use App\Models\TahunModel;
-use App\Models\PtkModel;
+use App\Models\SekolahModel;
 use App\Libraries\Hash;
 
 class Admin extends BaseController
@@ -1656,28 +1656,6 @@ class Admin extends BaseController
         }
     }
 
-    // public function kelastujuan()
-    // {
-    //     if ($this->request->isAJAX()) {
-    //         $id_kelas = $this->request->getVar('id_kelas');
-    //         $kelasModel = new KelasModel();
-    //         $kelas = $kelasModel->where('id_kelas', $id_kelas)->first();
-    //         $builder = $this->db->table('kelas');
-    //         $builder->select('*');
-    //         $builder->where("id_kelas !=", $kelas['id_kelas']);
-    //         $builder->orderby('id_tingkat,nama_kelas', 'ASC');
-    //         $query = $builder->get();
-    //         $kelas = $query->getResultArray();
-    //         $data = "<option value='' disabled selected value=''>--Pilih Kelas--</option>";
-    //         foreach ($kelas as $row) {
-    //             $data .= "<option value='" . $row['id_kelas'] . "'>" . $row['nama_kelas'] . "</option>";
-    //         }
-    //         echo json_encode($data);
-    //     } else {
-    //         exit("Tidak dapat diproses");
-    //     }
-    // }
-
     public function tahun()
     {
         if ($this->request->isAJAX()) {
@@ -1691,6 +1669,131 @@ class Admin extends BaseController
             echo json_encode($data);
         } else {
             exit("Tidak dapat diproses");
+        }
+    }
+
+    //-----------------------------------------------
+
+    public function identitas_sekolah()
+    {
+        $npsn = 50100287;
+        $sekolahModel = new SekolahModel();
+        $sekolah = $sekolahModel->find($npsn);
+        $data = [
+            'title' => "Identitas Sekolah",
+            'sekolah' => $sekolah,
+            //'userInfo' => $userInfo,
+        ];
+        echo view('Layout/header', $data);
+        echo view('Layout/sidebar', $data);
+        echo view('Admin/viewIdentitas', $data);
+        echo view('Layout/footer', $data);
+    }
+
+    public function ambilidentitas()
+    {
+        if ($this->request->isAJAX()) {
+            $npsn = 50100287;
+            $sekolahModel = new SekolahModel();
+            $sekolah = $sekolahModel->find($npsn);
+            $data = [
+                'sekolah' => $sekolah,
+            ];
+            $msg = [
+                'data' => view('Admin/identitasSekolah', $data)
+            ];
+            echo json_encode($msg);
+        } else {
+            exit("Tidak dapat diproses");
+        }
+    }
+
+    public function formeditidentitas()
+    {
+        if ($this->request->isAJAX()) {
+            $npsn = 50100287;
+            $sekolahModel = new SekolahModel();
+            $sekolah = $sekolahModel->find($npsn);
+            $data = [
+                'sekolah' => $sekolah,
+            ];
+            $msg = [
+                'data' => view('Admin/editidentitas', $data)
+            ];
+            echo json_encode($msg);
+        } else {
+            exit("Tidak dapat diproses");
+        }
+    }
+
+    public function updateidentitas()
+    {
+        if ($this->request->isAJAX()) {
+            $validation = \config\Services::validation();
+            $valid = $this->validate([
+                'nama_sekolah' => [
+                    'label' => "Nama Sekolah",
+                    'rules' => "required",
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'status' => [
+                    'label' => "Status",
+                    'rules' => "required",
+                    'errors' => [
+                        'required' => '{field} Wajib Dipilih'
+                    ]
+                ],
+                'email' => [
+                    'label' => "Email",
+                    'rules' => "required|valid_email",
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong',
+                        'valid_email' => '{field} tidak valid'
+                    ]
+                ],
+                'kepsek' => [
+                    'label' => "Nama Kepala Sekolah",
+                    'rules' => "required",
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+            ]);
+            if (!$valid) {
+                $msg = [
+                    'error' => [
+                        'nama_sekolah' => $validation->getError('nama_sekolah'),
+                        'status' => $validation->getError('status'),
+                        'email' => $validation->getError('email'),
+                        'kepsek' => $validation->getError('kepsek'),
+                    ]
+                ];
+            } else {
+                $npsn = 50100287;
+                $simpansekolah = [
+                    'nama_sekolah' => $this->request->getVar('nama_sekolah'),
+                    'nss' => $this->request->getVar('nss'),
+                    'status' => $this->request->getVar('status'),
+                    'no_sk_pendirian' => $this->request->getVar('no_sk_pendirian'),
+                    'tgl_sk' => $this->request->getVar('tgl_sk'),
+                    'alamat_sekolah' => $this->request->getVar('alamat'),
+                    'telp' => $this->request->getVar('telp'),
+                    'kode_pos' => $this->request->getVar('kode_pos'),
+                    'email' => $this->request->getVar('email'),
+                    'kepsek' => $this->request->getVar('kepsek'),
+                    'nip_kepsek' => $this->request->getVar('nip_kepsek'),
+                ];
+                $sekolah = new SekolahModel();
+                $sekolah->update($npsn, $simpansekolah);
+                $msg = [
+                    'sukses' => 'Kelas berhasil diperbaharui'
+                ];
+            }
+            echo json_encode($msg);
+        } else {
+            exit("Tidak Dapat Diproses");
         }
     }
 }

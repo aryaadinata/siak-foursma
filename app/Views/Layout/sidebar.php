@@ -61,9 +61,9 @@
                           </li>
                       </ul>
                   </li>
-                  <li class="nav-item <?php if ($uri->getSegment(2) == 'tahun_ajaran' || $uri->getSegment(2) == 'jurusan' || $uri->getSegment(2) == 'kelas') echo 'menu-open';
+                  <li class="nav-item <?php if ($uri->getSegment(2) == 'tahun_ajaran' || $uri->getSegment(2) == 'jurusan' || $uri->getSegment(2) == 'kelas' || $uri->getSegment(2) == 'identitas_sekolah') echo 'menu-open';
                                         else  echo '' ?>">
-                      <a href="#" class="nav-link <?php if ($uri->getSegment(2) == 'tahun_ajaran' || $uri->getSegment(2) == 'jurusan' || $uri->getSegment(2) == 'kelas') echo 'active';
+                      <a href="#" class="nav-link <?php if ($uri->getSegment(2) == 'tahun_ajaran' || $uri->getSegment(2) == 'jurusan' || $uri->getSegment(2) == 'kelas' || $uri->getSegment(2) == 'identitas_sekolah') echo 'active';
                                                     else  echo '' ?>">
                           <i class="nav-icon fas fa-school"></i>
                           <p>
