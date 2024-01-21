@@ -123,7 +123,7 @@
     </div>
 </div>
 <div class="card-footer">
-    <button type="submit" class="btn btn-info float-right btn-simpan">Simpan</button>
+    <button type="submit" class="btn btn-flat btn-info float-right btn-simpan">Simpan</button>
 </div>
 <?= form_close() ?>
 

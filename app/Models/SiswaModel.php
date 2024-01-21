@@ -9,7 +9,7 @@ class SiswaModel extends Model
     protected $table = "siswa";
     protected $primaryKey = "nisn";
     protected $allowedFields = [
-        "nisn", 'nis', 'nik', 'nama', 'tempat_lahir', 'tanggal_lahir', 'jk',  'agama', "alamat", 'no_hp', 'email', 'alamat_ortu',
+        "nisn", "nisn_en", 'nis', 'nik', 'nama', 'tempat_lahir', 'tanggal_lahir', 'jk',  'agama', "alamat", 'no_hp', 'email', 'alamat_ortu',
         'nama_ayah', "nama_ibu", "sekolah_asal", "foto", "tahun_masuk", 'id_kelas', "status_aktif", "tahun_out"
     ];
 

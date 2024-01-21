@@ -45,7 +45,7 @@
 <!-- /.content-wrapper -->
 
 <script>
-  function identitassekolah(nisn) {
+  function identitassekolah() {
     $.ajax({
       type: "post",
       url: "<?= site_url('Admin/ambilidentitas') ?>",
@@ -53,7 +53,7 @@
       beforeSend: function() {
         $(".tomboledit").removeClass("bg-gray").addClass("bg-pink");
         $(".tomboledit").removeAttr("disabled");
-        $(".tomboledit").attr("onclick", "edit(" + nisn + ")");
+        $(".tomboledit").attr("onclick", "edit()");
         $(".tomboledit").html("<i class='fa fa-pencil-alt'></i> Edit Sekolah");
         $('.viewdata').html('<div class="overlay"><h3><i class="fa fa-spin fa-spinner"></i> Loading...</h3></div>');
       },

@@ -46,7 +46,7 @@ if (!empty($session->getFlashdata('suksesupload'))) {
           <div class="card-header d-flex p-0">
             <h3 class="card-title p-3"><i class="fas fa-user" style="color: #1b3e72;"></i> Biodata Siswa</h3>
             <ul class="nav nav-pills ml-auto p-2">
-              <a href="#" class="nav-link bg-pink tomboledit" onclick="edit('<?php echo $siswa['nisn'] ?>')"><i class=" fas fa-pencil-alt"></i> Edit Biodata</a>
+              <li class="nav-item"><a href="#" class="nav-link btn btn-flat bg-pink tomboledit" onclick="edit('<?php echo $siswa['nisn'] ?>')"><i class=" fas fa-pencil-alt"></i> Edit Biodata</a></li>
             </ul>
           </div>
           <!-- /.card-header -->
@@ -88,7 +88,7 @@ if (!empty($session->getFlashdata('suksesupload'))) {
           <!-- /.card-body -->
           <!-- /card-footer -->
           <div class="card-footer">
-            <button type="submit" class="btn btn-info float-right">Simpan</button>
+            <button type="submit" class="btn btn-flat btn-info float-right">Simpan</button>
           </div>
           <?= form_close() ?>
           <!-- /.card-footer -->

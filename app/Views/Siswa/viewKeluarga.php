@@ -27,7 +27,7 @@
           <div class="card-header d-flex p-0">
             <h3 class="card-title p-3"><i class="fas fa-users" style="color: #1b3e72;"></i> Data Keluarga</h3>
             <ul class="nav nav-pills ml-auto p-2">
-              <a href="#" class="nav-link btntambahkeluarga bg-info"><i class=" fas fa-plus"></i> Tambah Keluarga</a>
+              <a href="#" class="nav-link btn btn-flat btntambahkeluarga bg-info"><i class=" fas fa-plus"></i> Tambah Keluarga</a>
             </ul>
           </div>
           <!-- /.card-header -->

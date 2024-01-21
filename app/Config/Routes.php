@@ -53,6 +53,8 @@ $routes->group('', ['filter' => 'filterlogin'], function ($routes) {
     $routes->get('/lihatguru', 'lihatguru');
     $routes->get('/datapegawai', 'datapegawai');
     $routes->get('/lihatpegawai', 'lihatpegawai');
+    $routes->get('/Perpustakaan', 'Perpustakaan::index');
+    $routes->get('/Perpustakaan/(:segment)', 'Perpustakaan::$1');
     //$routes->get('/admin/buat_user', 'admin::buat_user', ['filter' => 'filterlogin']);
 });
 

@@ -140,8 +140,8 @@
                 </div>
             </div>
             <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary btnsimpan"><i class='fa fa-save'></i> Simpan</button>
+                <button type="button" class="btn btn-flat btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-flat btn-info btnsimpan"><i class='fa fa-save'></i> Simpan</button>
             </div>
             <?= form_close() ?>
         </div>

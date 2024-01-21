@@ -18,12 +18,6 @@
     <!-- Sweet Alert -->
     <link rel="stylesheet" href="<?= base_url() ?>/plugins/sweetalert2/sweetalert2.min.css">
     <script src="<?= base_url() ?>/plugins/sweetalert2/sweetalert2.all.min.js"></script>
-    <style>
-        body {
-            background-color: #0d1117 !important;
-            /* Ganti dengan warna latar belakang yang diinginkan */
-        }
-    </style>
 </head>
 
 <body class="hold-transition login-page">

@@ -36,7 +36,7 @@
                    </select>
                  </li>
                  <li class="nav-item dropdown">
-                   <button type="button" class="btn btn-primary btn-block btnlulus">Luluskan</button>
+                   <button type="button" class="btn btn-flat btn-primary btn-block btnlulus">Luluskan</button>
                  </li>
                </ul>
              </div>
@@ -63,7 +63,7 @@
                    </select>
                  </li>
                  <li class="nav-item dropdown">
-                   <button type="button" class="btn btn-danger btn-block btnkembali">Batal Lulus</button>
+                   <button type="button" class="btn btn-flat btn-danger btn-block btnkembali">Batal Lulus</button>
                  </li>
                </ul>
              </div>

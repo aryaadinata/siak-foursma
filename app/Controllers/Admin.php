@@ -315,6 +315,7 @@ class Admin extends BaseController
                 }
                 $simpansiswa = [
                     'nisn' => $row[0],
+                    'nisn_en' => md5($row[0]),
                     'nama' => $row[1],
                     'id_tahun' => 2,
                     'status_aktif' => 0,
@@ -428,6 +429,7 @@ class Admin extends BaseController
             } else {
                 $simpansiswa = [
                     'nisn' => $this->request->getVar('nisn'),
+                    'nisn_en' => md5($this->request->getVar('nisn')),
                     'nis' => $this->request->getVar('nis'),
                     'nik' => $this->request->getVar('nik'),
                     'nama' => $this->request->getVar('nama_siswa'),

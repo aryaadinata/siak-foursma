@@ -46,8 +46,8 @@ function tanggal_indo($tanggal)
                     <td><?= $data["tempat_lahir_kel"]; ?>, <?= tanggal_indo($data["tanggal_lahir_kel"]); ?></td>
                     <td><?= $data["no_hp"]; ?></td>
                     <td>
-                        <a class="btn btn-warning btn-sm" onclick="edit('<?= $data['id_kel'] ?>')">edit</a>
-                        <a class="btn btn-danger btn-sm" onclick="hapus('<?= $data['id_kel'] ?>')">hapus</i></a>
+                        <a class="btn btn-flat btn-warning btn-sm" onclick="edit('<?= $data['id_kel'] ?>')">edit</a>
+                        <a class="btn btn-flat btn-danger btn-sm" onclick="hapus('<?= $data['id_kel'] ?>')">hapus</i></a>
                     </td>
                 </tr>
             <?php $no++;
