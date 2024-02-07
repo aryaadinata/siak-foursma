@@ -82,6 +82,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <i class="fas fa-th-large"></i>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                            <i class="fas fa-expand-arrows-alt"></i>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -425,7 +430,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             });
         }
     </script>
-    <script>
+    <!-- <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Event listener untuk button "Masuk"
             var btnMasuk = document.getElementById('btnMasuk');
@@ -472,7 +477,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 inputNisn.value = '';
             }
         });
-    </script>
+
+        window.addEventListener('beforeunload', function(event) {
+            // Panggil fungsi lockAccount saat tab atau browser ditutup
+            alert("Dilarang membuka tab lain!");
+        });
+
+        // Fungsi untuk mendeteksi perubahan tab dan mencegahnya
+        function handleTabChange() {
+            //lockAccount();
+            alert("Dilarang membuka tab lain!");
+        }
+
+        // Event listener untuk mendeteksi perubahan tab
+        document.addEventListener('visibilitychange', handleTabChange);
+    </script> -->
 </body>
 
 </html>

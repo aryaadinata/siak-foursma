@@ -5,10 +5,10 @@
  <footer class="main-footer">
      <!-- To the right -->
      <div class="float-right d-none d-sm-inline">
-         SMK Negeri 1 Sawan
+         SMA Negeri 4 Singaraja
      </div>
      <!-- Default to the left -->
-     <strong>Copyright &copy; 2023 <a href="<?= base_url() ?>">Siwatma</a>.</strong> Developed by Arya Adinata
+     <strong>Copyright &copy; 2023 <a href="<?= base_url() ?>">Siwatma</a>.</strong> Developed with ❤️ by <b>Arya Adinata</b>
  </footer>
  </div>
  <!-- ./wrapper -->

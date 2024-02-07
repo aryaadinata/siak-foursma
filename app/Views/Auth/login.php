@@ -99,7 +99,7 @@
             <!-- /.card-body -->
             <div class="card-footer">
                 <p class="mb-0 text-center">
-                    Developed with ♥ by Arya Adinata
+                    Developed with ❤️ by <b>Arya Adinata</b>
                 </p>
             </div>
         </div>

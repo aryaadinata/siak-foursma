@@ -12,7 +12,12 @@ class Perpustakaan extends BaseController
     {
         helper(['url', 'form']);
     }
+
     public function index()
+    {
+    }
+
+    public function kunjungan()
     {
         return view('Perpustakaan/kunjungan');
     }
@@ -106,13 +111,5 @@ class Perpustakaan extends BaseController
         } else {
             exit("Tidak Dapat Diproses");
         }
-    }
-
-    public function potong()
-    {
-        $string = "https://siwatma.sman4singaraja.sch.id/ceksiswa/09kbihadi8ch0q8egfo87qefgqufygqougoegu";
-        $pieces = explode("/", $string);
-        $lastElement = end($pieces);
-        echo $lastElement;
     }
 }
