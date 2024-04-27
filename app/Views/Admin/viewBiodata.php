@@ -46,7 +46,8 @@ if (!empty($session->getFlashdata('suksesupload'))) {
           <div class="card-header d-flex p-0">
             <h3 class="card-title p-3"><i class="fas fa-user" style="color: #1b3e72;"></i> Biodata Siswa</h3>
             <ul class="nav nav-pills ml-auto p-2">
-              <button class="nav-link bg-pink tomboledit" onclick="detail('<?= $siswa['nisn'] ?>')"><i class=" fas fa-pencil-alt"></i> Edit Biodata</button>
+              <li class="nav-item"><a href="<?= base_url() . "/Admin/data_siswa" ?>" id="btnKembali" class="btn btn-flat nav-link bg-gray"><i class=" fas fa-arrow-left"></i> Kembali</a></li>
+              <li class="nav-item"><a href="#" class="nav-link btn btn-flat bg-pink tomboledit" onclick="edit('<?= $siswa['nisn'] ?>')"><i class=" fas fa-pencil-alt"></i> Edit Biodata</a></li>
             </ul>
           </div>
           <!-- /.card-header -->
@@ -76,7 +77,7 @@ if (!empty($session->getFlashdata('suksesupload'))) {
               <?php endif ?>
             </div>
             <p></p>
-            <?= form_open_multipart("Siswa/uploadfoto", ["class" => "formimport"]) ?>
+            <?= form_open_multipart("Admin/uploadfoto", ["class" => "formimport"]) ?>
             <div class="form-group">
               <div class="custom-file">
                 <input type="file" class="custom-file-input <?= $classFoto ?>" id="foto" name="foto">
@@ -107,17 +108,18 @@ if (!empty($session->getFlashdata('suksesupload'))) {
   function biodatasiswa(nisn) {
     $.ajax({
       type: "post",
-      url: "<?= site_url('Admin/ambilbiodata') ?>",
+      url: "<?= site_url('Admin/ambilbiodata/') ?><?= $siswa["nisn"] ?>",
       dataType: "json",
       beforeSend: function() {
         $(".tomboledit").removeClass("bg-gray").addClass("bg-pink");
         $(".tomboledit").removeAttr("disabled");
-        $(".tomboledit").attr("onclick", "edit(" + nisn + ")");
+        $(".tomboledit").attr("onclick", "edit('<?= $siswa['nisn'] ?>')");
         $(".tomboledit").html("<i class='fa fa-pencil-alt'></i> Edit Biodata");
         $('.viewdata').html('<div class="overlay"><h3><i class="fa fa-spin fa-spinner"></i> Loading...</h3></div>');
       },
       success: function(response) {
         $('.viewdata').html(response.data);
+        $("#btnKembali").show();
       },
       error: function(xhr, status, error) {
         console.error("Status Code: " + xhr.status);
@@ -133,7 +135,7 @@ if (!empty($session->getFlashdata('suksesupload'))) {
   function edit(nisn) {
     $.ajax({
       type: "post",
-      url: "<?= site_url('Siswa/formeditbiodata') ?>",
+      url: "<?= site_url('Admin/formeditbiodata') ?>",
       data: {
         nisn: nisn
       },
@@ -145,11 +147,12 @@ if (!empty($session->getFlashdata('suksesupload'))) {
         if (response.data) {
           $('.viewdata').html(response.data);
         }
+        $("#btnKembali").hide();
       },
       complete: function() {
         $(".tomboledit").removeClass("bg-pink").addClass("bg-gray");
         $(".tomboledit").attr("onclick", "biodatasiswa()");
-        $(".tomboledit").html("<i class='fa fa-ban'></i> Batal Edit");
+        $(".tomboledit").html("<i class='fa fa-ban'></i> Batal Edit");        
       },
       error: function(xhr, ajaxOption, trhownError) {
         alert(xhr.status + "\n" + xhr.responseText + "\n" + trhownError);

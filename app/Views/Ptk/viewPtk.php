@@ -62,7 +62,7 @@
          beforeSend: function() {
            $(".tomboledit").removeClass("bg-gray").addClass("bg-pink");
            $(".tomboledit").removeAttr("disabled");
-           $(".tomboledit").attr("onclick", "edit(" + nisn + ")");
+           $(".tomboledit").attr("onclick", "edit('" + nik + "')");
            $(".tomboledit").html("<i class='fa fa-pencil-alt'></i> Edit Biodata");
          },
          success: function(response) {
@@ -171,7 +171,7 @@
          beforeSend: function() {
            $(".tomboledit").removeClass("bg-gray").addClass("bg-pink");
            $(".tomboledit").removeAttr("disabled");
-           $(".tomboledit").attr("onclick", "edit(" + nisn + ")");
+           $(".tomboledit").attr("onclick", "edit('" + nik + "')");
            $(".tomboledit").html("<i class='fa fa-pencil-alt'></i> Edit Biodata");
          },
          success: function(response) {

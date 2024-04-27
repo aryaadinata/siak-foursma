@@ -49,7 +49,7 @@
                               <a href="<?= base_url('/dataguru') ?>" class="nav-link <?php if ($uri->getSegment(1) == 'dataguru' || $uri->getSegment(2) == 'viewimport' || $uri->getSegment(1) == 'lihatguru' || $uri->getSegment(1) == 'importguru') echo 'active';
                                                                                         else  echo '' ?>">
                                   <i class="far fa-circle nav-icon"></i>
-                                  <p>Guru</p>
+                                  <p> Guru</p>
                               </a>
                           </li>
                           <li class="nav-item">
@@ -102,9 +102,9 @@
                           </li>
                       </ul>
                   </li>
-                  <li class="nav-item <?php if ($uri->getSegment(2) == 'data_siswa' || $uri->getSegment(2) == 'viewimport' || $uri->getSegment(2) == 'kenaikan' || $uri->getSegment(2) == 'kelulusan' || $uri->getSegment(2) == 'keluar') echo 'menu-open';
+                  <li class="nav-item <?php if ($uri->getSegment(2) == 'data_siswa' || $uri->getSegment(2) == 'viewimport' || $uri->getSegment(2) == 'biodatasiswa' || $uri->getSegment(2) == 'kenaikan' || $uri->getSegment(2) == 'kelulusan' || $uri->getSegment(2) == 'keluar') echo 'menu-open';
                                         else  echo '' ?>">
-                      <a href="#" class="nav-link <?php if ($uri->getSegment(2) == 'data_siswa' || $uri->getSegment(2) == 'viewimport' || $uri->getSegment(2) == 'kenaikan' || $uri->getSegment(2) == 'kelulusan' || $uri->getSegment(2) == 'keluar') echo 'active';
+                      <a href="#" class="nav-link <?php if ($uri->getSegment(2) == 'data_siswa' || $uri->getSegment(2) == 'viewimport' || $uri->getSegment(2) == 'biodatasiswa' || $uri->getSegment(2) == 'kenaikan' || $uri->getSegment(2) == 'kelulusan' || $uri->getSegment(2) == 'keluar') echo 'active';
                                                     else  echo '' ?>">
                           <i class="nav-icon fas fa-users"></i>
                           <p>
@@ -114,7 +114,7 @@
                       </a>
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
-                              <a href="<?= base_url('/Admin/data_siswa/') ?>" class="nav-link <?php if ($uri->getSegment(2) == 'data_siswa' || $uri->getSegment(2) == 'viewimport') echo 'active';
+                              <a href="<?= base_url('/Admin/data_siswa/') ?>" class="nav-link <?php if ($uri->getSegment(2) == 'data_siswa' || $uri->getSegment(2) == 'viewimport' || $uri->getSegment(2) == 'biodatasiswa') echo 'active';
                                                                                                 else  echo '' ?>">
                                   <i class="far fa-circle nav-icon"></i>
                                   <p>Siswa</p>
@@ -149,7 +149,7 @@
                                                     else  echo '' ?>">
                           <i class="nav-icon fas fa-users"></i>
                           <p>
-                              User
+                              Akun
                               <i class="right fas fa-angle-left"></i>
                           </p>
                       </a>
@@ -165,25 +165,17 @@
                               <a href="#" class="nav-link <?php if ($uri->getSegment(2) == 'user_ptk') echo 'active';
                                                             else  echo '' ?>">
                                   <i class="far fa-circle nav-icon"></i>
-                                  <p>User PTK</p>
+                                  <p>Akun PTK</p>
                               </a>
                           </li>
                           <li class="nav-item">
                               <a href="#" class="nav-link <?php if ($uri->getSegment(2) == 'user_siswa') echo 'active';
                                                             else  echo '' ?>">
                                   <i class="far fa-circle nav-icon"></i>
-                                  <p>User Siswa</p>
+                                  <p>Akun Siswa</p>
                               </a>
                           </li>
                       </ul>
-                  </li>
-                  <li class="nav-item">
-                      <a href="#" class="nav-link">
-                          <i class="nav-icon fas fa-cogs"></i>
-                          <p>
-                              Pengaturan
-                          </p>
-                      </a>
                   </li>
                   <li class="nav-header">NAVIGASI</li>
                   <li class="nav-item bg-danger color-palette">

@@ -34,6 +34,7 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Auth::index');
 $routes->get('/dataguru', 'Ptk::data_guru/');
 $routes->get('/lihatguru/(:num)', 'Ptk::detailguru/$1');
+$routes->get('/Admin/biodatasiswa/(:num)', 'Admin::biodata/$1');
 $routes->get('/datapegawai', 'Ptk::data_pegawai');
 $routes->get('/lihatpegawai/(:num)', 'Ptk::detailguru/$1');
 $routes->get('/uploadfotoguru', 'Ptk::uploadfoto');

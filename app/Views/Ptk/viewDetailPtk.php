@@ -116,7 +116,7 @@ if (!empty($session->getFlashdata('suksesupload'))) {
       beforeSend: function() {
         $(".tomboledit").removeClass("bg-gray").addClass("bg-pink");
         $(".tomboledit").removeAttr("disabled");
-        $(".tomboledit").attr("onclick", "edit(" + <?= $ptk["nik_ptk"] ?> + ")");
+        $(".tomboledit").attr("onclick", "edit('<?= $ptk['nik_ptk'] ?>')");
         $(".tomboledit").html("<i class='fa fa-pencil-alt'></i> Edit PTK");
         $('.viewdata').html('<div class="overlay"><h3><i class="fa fa-spin fa-spinner"></i> Loading...</h3></div>');
       },

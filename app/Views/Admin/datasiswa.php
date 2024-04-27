@@ -36,7 +36,7 @@
                             <td class="tengah"><?= $row["nama_kelas"] ?></td>
                             <td class="tengah"><?= $row["tahun_masuk"] ?></td>
                             <td class="tengah">
-                                <button type="button" title="Edit" class="btn btn-flat btn-info btn-xs" onclick="detail('<?= $row['nisn'] ?>')">detail</button>
+                                <a href="<?= base_url() ?>/Admin/biodatasiswa/<?= $row["nisn"] ?>" type="button" title="Edit" class="btn btn-flat btn-info btn-xs">detail</a>
                                 <button type="button" title="Hapus" class="btn btn-flat btn-danger btn-xs" onclick="hapus('<?= $row['nisn'] ?>')">hapus</button>
                             </td>
                         </tr>

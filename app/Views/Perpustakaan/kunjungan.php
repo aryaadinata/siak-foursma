@@ -22,10 +22,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="<?= base_url() ?>/plugins/sweetalert2/sweetalert2.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="<?= base_url() ?>/dist/css/adminlte.min.css">
-
     <script src="<?= base_url() ?>/plugins/sweetalert2/sweetalert2.all.min.js"></script>
-
     <style>
+        body {
+            -webkit-touch-callout: none;
+            /* Untuk iOS */
+            -webkit-user-select: none;
+            /* Untuk Chrome, Safari, dan Opera */
+            -khtml-user-select: none;
+            /* Untuk Konqueror */
+            -moz-user-select: none;
+            /* Untuk Firefox */
+            -ms-user-select: none;
+            /* Untuk Internet Explorer/Edge */
+            user-select: none;
+        }
+
         .table-scrollable {
             max-height: 80px;
             /* Sesuaikan tinggi maksimum sesuai kebutuhan Anda */
@@ -69,10 +81,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <img src="<?= base_url() ?>/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
                     <span class="brand-text font-weight-light">Perpustakaan Foursma</span>
                 </a>
-
-                <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
 
                 <!-- Right navbar links -->
@@ -430,7 +438,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             });
         }
     </script>
-    <!-- <script>
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Event listener untuk button "Masuk"
             var btnMasuk = document.getElementById('btnMasuk');
@@ -478,19 +486,47 @@ scratch. This page gets rid of all links and provides the needed markup only.
             }
         });
 
-        window.addEventListener('beforeunload', function(event) {
-            // Panggil fungsi lockAccount saat tab atau browser ditutup
-            alert("Dilarang membuka tab lain!");
-        });
+        // document.addEventListener("contextmenu", function(e) {
+        //     e.preventDefault();
+        // });
 
-        // Fungsi untuk mendeteksi perubahan tab dan mencegahnya
-        function handleTabChange() {
-            //lockAccount();
-            alert("Dilarang membuka tab lain!");
-        }
+        // document.addEventListener("keydown", function(e) {
+        //     // Check if Ctrl+C is pressed
+        //     if (e.ctrlKey && e.shiftKey && e.key === "I") {
+        //         e.preventDefault();
+        //         alert("Tombol kombinasi dilarang.");
+        //         // Atau Anda bisa tidak menampilkan alert dan hanya mencegah default action
+        //         // e.preventDefault();
+        //     }
+        //     if (e.ctrlKey && e.key === "u") {
+        //         e.preventDefault();
+        //         alert("Tombol kombinasi dilarang.");
+        //         // Atau Anda bisa tidak menampilkan alert dan hanya mencegah default action
+        //         // e.preventDefault();
+        //     }
+        //     if (e.ctrlKey && e.key === "c") {
+        //         e.preventDefault();
+        //         alert("Tombol kombinasi dilarang.");
+        //         // Atau Anda bisa tidak menampilkan alert dan hanya mencegah default action
+        //         // e.preventDefault();
+        //     }
+        // });
 
-        // Event listener untuk mendeteksi perubahan tab
-        document.addEventListener('visibilitychange', handleTabChange);
+        // window.addEventListener('beforeunload', function(event) {
+        //     // Panggil fungsi lockAccount saat tab atau browser ditutup
+        //     alert("Anda terdeteksi keluar aplikasi !");
+        // });
+
+        // // Fungsi untuk mendeteksi perubahan tab dan mencegahnya
+
+        // function handleTabChange() {
+        //     //lockAccount();
+        //     alert("Anda terdeteksi keluar aplikasi !");
+        // }
+
+        // window.addEventListener("blur", function() {
+        //     alert("Anda terdeteksi keluar aplikasi !");
+        // });
     </script> -->
 </body>
 

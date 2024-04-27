@@ -466,8 +466,18 @@ class Admin extends BaseController
             $siswa = new SiswaModel();
             $user = new UserModel();
             $id = $this->request->getVar('nisn');
+
+            $siswaInfo = $siswa->find($id);
+            if (!empty($siswaInfo['foto'])) {
+                $fotoPath = FCPATH . 'dist/img/pasfoto' . $siswaInfo['foto'];
+                if (file_exists($fotoPath)) {
+                    unlink($fotoPath); // Hapus foto dari direktori
+                }
+            }
+
             $siswa->delete($id);
             $user->delete($id);
+
             $msg = [
                 'sukses' => 'Data siswa berhasil dihapus !'
             ];
@@ -539,10 +549,9 @@ class Admin extends BaseController
         echo view('Layout/footer', $data);
     }
 
-    function ambilbiodata()
+    function ambilbiodata($nisn)
     {
         if ($this->request->isAJAX()) {
-            $nisn = $this->request->getVar("nisn");
             $builder = $this->db->table('siswa');
             $builder->select('*');
             $builder->join('kelas', 'siswa.id_kelas = kelas.id_kelas', 'left');
@@ -569,26 +578,26 @@ class Admin extends BaseController
 
     public function formeditbiodata()
     {
-        if ($this->request->isAJAX()) {
-            $nisn = $this->request->getVar('nisn');
-            $builder = $this->db->table('siswa');
-            $builder->select('*');
-            $builder->join('kelas', 'siswa.id_kelas = kelas.id_kelas');
-            $builder->where("nisn", $nisn);
-            $query = $builder->get();
-            $siswa = $query->getResultArray();
-            $tahunModel = new TahunModel();
-            $data = [
-                'siswa' => $siswa,
-                'tanggal_indo' => $this->tanggal_indo($siswa[0]["tanggal_lahir"]),
-            ];
-            $msg = [
-                'data' => view('Admin/editBiodata', $data)
-            ];
-            echo json_encode($msg);
-        } else {
-            exit("Tidak dapat diproses");
-        }
+        //if ($this->request->isAJAX()) {
+        $nisn = $this->request->getVar("nisn");;
+        $builder = $this->db->table('siswa');
+        $builder->select('*');
+        $builder->join('kelas', 'siswa.id_kelas = kelas.id_kelas', 'left');
+        $builder->where("nisn", $nisn);
+        $query = $builder->get();
+        $siswa = $query->getResultArray();
+        $tahunModel = new TahunModel();
+        $data = [
+            'siswa' => $siswa,
+            //'tanggal_indo' => $this->tanggal_indo($siswa[0]["tanggal_lahir"]),
+        ];
+        $msg = [
+            'data' => view('Admin/editBiodata', $data)
+        ];
+        echo json_encode($msg);
+        // } else {
+        //     exit("Tidak dapat diproses");
+        // }
     }
 
     public function updatebiodata()
@@ -598,7 +607,7 @@ class Admin extends BaseController
             $valid = $this->validate([
                 'nis' => [
                     'label' => "NIS",
-                    'rules' => "required|is_unique[siswa.nis,nisn,{nisn}]",
+                    'rules' => "required|is_unique[siswa.nis,nisn," . $this->request->getVar('nisn') . "]",
                     'errors' => [
                         'required' => '{field} tidak boleh kosong',
                         'is_unique' => '{field} sudah terdaftar !',
@@ -606,7 +615,7 @@ class Admin extends BaseController
                 ],
                 'nik' => [
                     'label' => "NIK",
-                    'rules' => "required|is_unique[siswa.nik,nik,{nik}]",
+                    'rules' => "required|is_unique[siswa.nik,nisn," . $this->request->getVar('nisn') . "]",
                     'errors' => [
                         'required' => '{field} tidak boleh kosong',
                         'is_unique' => '{field} sudah terdaftar !',
@@ -734,6 +743,43 @@ class Admin extends BaseController
             echo json_encode($msg);
         } else {
             exit("Tidak Dapat Diproses");
+        }
+    }
+
+    public function uploadfoto()
+    {
+        $nisn = $this->request->getVar("nisn");
+        $validation = \config\Services::validation();
+        $valid = $this->validate([
+            'foto' => [
+                'label' => "Foto",
+                'rules' => 'uploaded[foto]|ext_in[foto,jpg,jpeg,png]|max_size[foto,1024]|mime_in[foto,image/jpg,image/jpeg,image/png]',
+                'errors' => [
+                    'uploaded' => 'Pilih {field} Terlebih Dahulu !',
+                    'ext_in' => '{field} harus ekstensi jpg, jpeg atau png',
+                    'max_size' => 'Size {field} maksimal 1 MB',
+                    'mime_in' => 'File yang dipilih bukan gambar',
+                ]
+            ],
+        ]);
+        if (!$valid) {
+            $this->session->setFlashdata('foto', $validation->getError('foto'));
+            return redirect()->to('/Admin/biodatasiswa/' . $nisn);
+        } else {
+            $foto = $this->request->getFile('foto');
+            $ext = $foto->getClientExtension();
+            $siswaModel = new SiswaModel();
+            $namaFoto = $nisn . "." . $ext;
+            $foto->move("dist/img/pasfoto", $namaFoto, true);
+            //$foto->move("dist/img/pasfoto" . 'uploads', null, true);
+
+            $simpandata = [
+                'foto' => $namaFoto,
+            ];
+            $siswaModel->update($nisn, $simpandata);
+
+            $this->session->setFlashdata('suksesupload', "Upload Foto Berhasil");
+            return redirect()->to('/Admin/biodatasiswa/' . $nisn);
         }
     }
     //--------------------------------------------------------------------------
