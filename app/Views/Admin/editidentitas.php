@@ -4,8 +4,8 @@
     <div class="form-group row">
         <label for="" class="col-sm-4 col-form-label">NPSN</label>
         <div class="col-sm-8">
-            <input type="number" class="form-control" placeholder="Masukkan NISN Siswa" value="<?= $sekolah["npsn"] ?>" readonly>
-            <input type="hidden" name="nisn" id="npsn" value="<?= $sekolah["npsn"] ?>">
+            <input type="number" class="form-control" placeholder="Masukkan NPSN" value="<?= $sekolah["npsn"] ?>" readonly>
+            <input type="hidden" name="npsn" id="npsn" value="<?= $sekolah["npsn"] ?>">
         </div>
     </div>
     <div class="form-group row">

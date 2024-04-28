@@ -3,7 +3,7 @@
         <tr>
             <th class="no-sorting"><input type="checkbox" id="checkAll1"></th>
             <th>No</th>
-            <th>NISN</th>
+            <th>NIS</th>
             <th>Nama</th>
         </tr>
     </thead>
@@ -13,9 +13,9 @@
             $no++;
         ?>
             <tr>
-                <th><input type="checkbox" value="<?= $row["nisn"] ?> " class="checkItem1"></th>
+                <th><input type="checkbox" value="<?= $row["nis"] ?> " class="checkItem1"></th>
                 <td><?= $no ?></td>
-                <td><?= $row["nisn"] ?></td>
+                <td><?= $row["nis"] ?></td>
                 <td><?= $row["nama"] ?></td>
             </tr>
         <?php endforeach; ?>

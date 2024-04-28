@@ -32,31 +32,34 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Auth::index');
-$routes->get('/dataguru', 'Ptk::data_guru/');
-$routes->get('/lihatguru/(:num)', 'Ptk::detailguru/$1');
-$routes->get('/Admin/biodatasiswa/(:num)', 'Admin::biodata/$1');
-$routes->get('/datapegawai', 'Ptk::data_pegawai');
-$routes->get('/lihatpegawai/(:num)', 'Ptk::detailguru/$1');
-$routes->get('/uploadfotoguru', 'Ptk::uploadfoto');
-$routes->get('/uploadfotopegawai', 'Ptk::uploadfoto');
-$routes->get('/importguru', 'Ptk::viewimport');
-$routes->get('/importpegawai', 'Ptk::viewimport');
 
 $routes->group('', ['filter' => 'filterlogin'], function ($routes) {
+    $routes->get('/Ptk/detailguru/(:num)', 'Ptk::detailguru');
+    $routes->get('/lihatguru/(:num)', 'Ptk::detailguru/$1');
     $routes->get('/Dashboard', 'Dashboard::index');
     $routes->get('/dashboard', 'dashboard::index');
     $routes->get('/Dashboard/(:segment)', 'Dashboard::$1');
     $routes->get('/dashboard/(:segment)', 'dashboard::$1');
     $routes->get('/admin/(:segment)', 'admin::$1');
     $routes->get('/Admin/(:segment)', 'Admin::$1');
+    $routes->get('/Admin/biodata/', 'Admin::biodata/');
     $routes->get('/Ptk/(:segment)', 'Ptk::$1');
-    $routes->get('/dataguru', 'dataguru');
-    $routes->get('/lihatguru', 'lihatguru');
-    $routes->get('/datapegawai', 'datapegawai');
-    $routes->get('/lihatpegawai', 'lihatpegawai');
+    //$routes->get('/dataguru', 'dataguru');
+    //$routes->get('/lihatguru', 'lihatguru');
+    //$routes->get('/datapegawai', 'datapegawai');
+    //$routes->get('/lihatpegawai', 'lihatpegawai');
     $routes->get('/Perpustakaan', 'Perpustakaan::index');
     $routes->get('/Perpustakaan/(:segment)', 'Perpustakaan::$1');
     //$routes->get('/admin/buat_user', 'admin::buat_user', ['filter' => 'filterlogin']);
+
+    $routes->get('/dataguru', 'Ptk::data_guru/');
+    $routes->get('/Admin/biodatasiswa/(:num)', 'Admin::biodata/$1');
+    $routes->get('/datapegawai', 'Ptk::data_pegawai');
+    $routes->get('/lihatpegawai/(:num)', 'Ptk::detailguru/$1');
+    $routes->get('/uploadfotoguru', 'Ptk::uploadfoto');
+    $routes->get('/uploadfotopegawai', 'Ptk::uploadfoto');
+    $routes->get('/importguru', 'Ptk::viewimport');
+    $routes->get('/importpegawai', 'Ptk::viewimport');
 });
 
 $routes->group('', ['filter' => 'filtersiswa'], function ($routes) {

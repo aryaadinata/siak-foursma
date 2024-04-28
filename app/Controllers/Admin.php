@@ -188,13 +188,13 @@ class Admin extends BaseController
     function formedit()
     {
         if ($this->request->isAJAX()) {
-            $nisn = $this->request->getVar('nisn');
+            $nis = $this->request->getVar('nis');
             $siswaModel = new SiswaModel();
-            $siswa = $siswaModel->find($nisn);
+            $siswa = $siswaModel->find($nis);
             $kelasModel = new KelasModel();
             $kelas = $kelasModel->findAll();
             $data = [
-                'nisn' => $siswa['nisn'],
+                'nis' => $siswa['nis'],
                 'nama' => $siswa['nama'],
                 'id_kelas' => $siswa['id_kelas'],
                 'kelas' => $kelas,
@@ -236,7 +236,7 @@ class Admin extends BaseController
                     ]
                 ];
             } else {
-                $id = $this->request->getVar('nisn');
+                $id = $this->request->getVar('nis');
                 $simpansiswa = [
                     'nama' => $this->request->getVar('nama_siswa'),
                     'id_kelas' => $this->request->getVar('kelas'),
@@ -314,8 +314,8 @@ class Admin extends BaseController
                     continue;
                 }
                 $simpansiswa = [
-                    'nisn' => $row[0],
-                    'nisn_en' => md5($row[0]),
+                    'nis' => $row[0],
+                    'nis_en' => md5($row[0]),
                     'nama' => $row[1],
                     'id_tahun' => 2,
                     'status_aktif' => 0,
@@ -362,16 +362,16 @@ class Admin extends BaseController
                 [
                     'nisn' => [
                         'label' => "NISN",
-                        'rules' => "required|is_unique[siswa.nisn]",
+                        'rules' => "is_unique[siswa.nisn]",
                         'errors' => [
-                            'required' => '{field} tidak boleh kosong',
                             'is_unique' => '{field} sudah terdaftar !',
                         ]
                     ],
                     'nis' => [
                         'label' => "NIS",
-                        'rules' => "is_unique[siswa.nis]",
+                        'rules' => "required|is_unique[siswa.nis]",
                         'errors' => [
+                            'required' => '{field} tidak boleh kosong',
                             'is_unique' => '{field} sudah terdaftar !',
                         ]
                     ],
@@ -428,9 +428,9 @@ class Admin extends BaseController
                 ];
             } else {
                 $simpansiswa = [
-                    'nisn' => $this->request->getVar('nisn'),
-                    'nisn_en' => md5($this->request->getVar('nisn')),
                     'nis' => $this->request->getVar('nis'),
+                    'nis_en' => md5($this->request->getVar('nis')),
+                    'nisn' => $this->request->getVar('nisn'),
                     'nik' => $this->request->getVar('nik'),
                     'nama' => $this->request->getVar('nama_siswa'),
                     'tempat_lahir' => $this->request->getVar('tempat_lahir'),
@@ -465,11 +465,11 @@ class Admin extends BaseController
         if ($this->request->isAJAX()) {
             $siswa = new SiswaModel();
             $user = new UserModel();
-            $id = $this->request->getVar('nisn');
+            $id = "0987654321";
 
             $siswaInfo = $siswa->find($id);
             if (!empty($siswaInfo['foto'])) {
-                $fotoPath = FCPATH . 'dist/img/pasfoto' . $siswaInfo['foto'];
+                $fotoPath = FCPATH . '/dist/img/pasfoto/' . $siswaInfo['foto'];
                 if (file_exists($fotoPath)) {
                     unlink($fotoPath); // Hapus foto dari direktori
                 }
@@ -534,10 +534,10 @@ class Admin extends BaseController
         return $split[2] . $split[1] . $split[0];
     }
 
-    public function biodata($nisn)
+    public function biodata($nis)
     {
         $siswaModel = new SiswaModel();
-        $siswa = $siswaModel->find($nisn);
+        $siswa = $siswaModel->find($nis);
         $data = [
             'title' => "Biodata",
             'siswa' => $siswa,
@@ -549,13 +549,13 @@ class Admin extends BaseController
         echo view('Layout/footer', $data);
     }
 
-    function ambilbiodata($nisn)
+    function ambilbiodata($nis)
     {
         if ($this->request->isAJAX()) {
             $builder = $this->db->table('siswa');
             $builder->select('*');
             $builder->join('kelas', 'siswa.id_kelas = kelas.id_kelas', 'left');
-            $builder->where("nisn", $nisn);
+            $builder->where("nis", $nis);
             $query = $builder->get();
             $siswa = $query->getResultArray();
             if ($siswa[0]["tanggal_lahir"] != 0) {
@@ -579,11 +579,11 @@ class Admin extends BaseController
     public function formeditbiodata()
     {
         //if ($this->request->isAJAX()) {
-        $nisn = $this->request->getVar("nisn");;
+        $nis = $this->request->getVar("nis");;
         $builder = $this->db->table('siswa');
         $builder->select('*');
         $builder->join('kelas', 'siswa.id_kelas = kelas.id_kelas', 'left');
-        $builder->where("nisn", $nisn);
+        $builder->where("nis", $nis);
         $query = $builder->get();
         $siswa = $query->getResultArray();
         $tahunModel = new TahunModel();
@@ -607,7 +607,7 @@ class Admin extends BaseController
             $valid = $this->validate([
                 'nis' => [
                     'label' => "NIS",
-                    'rules' => "required|is_unique[siswa.nis,nisn," . $this->request->getVar('nisn') . "]",
+                    'rules' => "required|is_unique[siswa.nis,nis," . $this->request->getVar('nis') . "]",
                     'errors' => [
                         'required' => '{field} tidak boleh kosong',
                         'is_unique' => '{field} sudah terdaftar !',
@@ -615,7 +615,7 @@ class Admin extends BaseController
                 ],
                 'nik' => [
                     'label' => "NIK",
-                    'rules' => "required|is_unique[siswa.nik,nisn," . $this->request->getVar('nisn') . "]",
+                    'rules' => "required|is_unique[siswa.nik,nis," . $this->request->getVar('nis') . "]",
                     'errors' => [
                         'required' => '{field} tidak boleh kosong',
                         'is_unique' => '{field} sudah terdaftar !',
@@ -718,7 +718,7 @@ class Admin extends BaseController
                     ]
                 ];
             } else {
-                $id = $this->request->getVar('nisn');
+                $id = $this->request->getVar('nis');
                 $simpansiswa = [
                     'nis' => $this->request->getVar('nis'),
                     'nik' => $this->request->getVar('nik'),
@@ -748,15 +748,15 @@ class Admin extends BaseController
 
     public function uploadfoto()
     {
-        $nisn = $this->request->getVar("nisn");
+        $nis = $this->request->getVar("nis");
         $validation = \config\Services::validation();
         $valid = $this->validate([
             'foto' => [
                 'label' => "Foto",
-                'rules' => 'uploaded[foto]|ext_in[foto,jpg,jpeg,png]|max_size[foto,1024]|mime_in[foto,image/jpg,image/jpeg,image/png]',
+                'rules' => 'uploaded[foto]|ext_in[foto,jpg]|max_size[foto,1024]|mime_in[foto,image/jpg,image/jpeg,image/png]',
                 'errors' => [
                     'uploaded' => 'Pilih {field} Terlebih Dahulu !',
-                    'ext_in' => '{field} harus ekstensi jpg, jpeg atau png',
+                    'ext_in' => '{field} harus ekstensi jpg',
                     'max_size' => 'Size {field} maksimal 1 MB',
                     'mime_in' => 'File yang dipilih bukan gambar',
                 ]
@@ -764,22 +764,22 @@ class Admin extends BaseController
         ]);
         if (!$valid) {
             $this->session->setFlashdata('foto', $validation->getError('foto'));
-            return redirect()->to('/Admin/biodatasiswa/' . $nisn);
+            return redirect()->to('/Admin/biodatasiswa/' . $nis);
         } else {
             $foto = $this->request->getFile('foto');
             $ext = $foto->getClientExtension();
             $siswaModel = new SiswaModel();
-            $namaFoto = $nisn . "." . $ext;
+            $namaFoto = $nis . "." . $ext;
             $foto->move("dist/img/pasfoto", $namaFoto, true);
             //$foto->move("dist/img/pasfoto" . 'uploads', null, true);
 
             $simpandata = [
                 'foto' => $namaFoto,
             ];
-            $siswaModel->update($nisn, $simpandata);
+            $siswaModel->update($nis, $simpandata);
 
             $this->session->setFlashdata('suksesupload', "Upload Foto Berhasil");
-            return redirect()->to('/Admin/biodatasiswa/' . $nisn);
+            return redirect()->to('/Admin/biodatasiswa/' . $nis);
         }
     }
     //--------------------------------------------------------------------------
@@ -1195,7 +1195,7 @@ class Admin extends BaseController
     {
         if ($this->request->isAJAX()) {
             //$id = $this->request->getVar('id_tujuan');
-            $nisn = $this->request->getVar('naikkelas');
+            $nis = $this->request->getVar('naikkelas');
             $validation = \config\Services::validation();
             $valid = $this->validate([
                 'naikkelas' => [
@@ -1213,13 +1213,13 @@ class Admin extends BaseController
                     ]
                 ];
             } else {
-                for ($i = 0; $i < count($nisn); $i++) {
+                for ($i = 0; $i < count($nis); $i++) {
                     //echo $row . "";
                     $naikkelas = [
                         'id_kelas' => null,
                     ];
                     $siswa = new SiswaModel();
-                    $siswa->update($nisn[$i], $naikkelas);
+                    $siswa->update($nis[$i], $naikkelas);
                 }
                 $msg = [
                     'sukses' => 'Berhasil mengeluarkan siswa dari rombel !'
@@ -1235,7 +1235,7 @@ class Admin extends BaseController
     {
         if ($this->request->isAJAX()) {
             $id = $this->request->getVar('id_asal');
-            $nisn = $this->request->getVar('naikkelas');
+            $nis = $this->request->getVar('naikkelas');
             $validation = \config\Services::validation();
             $valid = $this->validate([
                 'id_asal' => [
@@ -1261,12 +1261,12 @@ class Admin extends BaseController
                     ]
                 ];
             } else {
-                for ($i = 0; $i < count($nisn); $i++) {
+                for ($i = 0; $i < count($nis); $i++) {
                     $naikkelas = [
                         'id_kelas' => $id,
                     ];
                     $siswa = new SiswaModel();
-                    $siswa->update($nisn[$i], $naikkelas);
+                    $siswa->update($nis[$i], $naikkelas);
                 }
                 $msg = [
                     'sukses' => 'Berhasil memasukkan siswa ke dalam rombel !'
@@ -1313,7 +1313,7 @@ class Admin extends BaseController
     {
         if ($this->request->isAJAX()) {
             $id_tahun = $this->request->getVar('id_tahun');
-            $nisn = $this->request->getVar('naikkelas');
+            $nis = $this->request->getVar('naikkelas');
             $validation = \config\Services::validation();
             $valid = $this->validate([
                 'id_tahun' => [
@@ -1339,14 +1339,14 @@ class Admin extends BaseController
                     ]
                 ];
             } else {
-                for ($i = 0; $i < count($nisn); $i++) {
+                for ($i = 0; $i < count($nis); $i++) {
                     //echo $row . "";
                     $lulus = [
                         'status_aktif' => 1,
                         'tahun_out' => $id_tahun,
                     ];
                     $siswa = new SiswaModel();
-                    $siswa->update($nisn[$i], $lulus);
+                    $siswa->update($nis[$i], $lulus);
                 }
                 $msg = [
                     'sukses' => 'Proses kelulusan kelas berhasil !'
@@ -1362,7 +1362,7 @@ class Admin extends BaseController
     {
         if ($this->request->isAJAX()) {
             $id = $this->request->getVar('id_asal');
-            $nisn = $this->request->getVar('naikkelas');
+            $nis = $this->request->getVar('naikkelas');
             $validation = \config\Services::validation();
             $valid = $this->validate([
                 'naikkelas' => [
@@ -1380,14 +1380,14 @@ class Admin extends BaseController
                     ]
                 ];
             } else {
-                for ($i = 0; $i < count($nisn); $i++) {
+                for ($i = 0; $i < count($nis); $i++) {
                     $naikkelas = [
                         'status' => 1,
                         'ket' => 1,
                         'tahun' => "",
                     ];
                     $siswa = new SiswaModel();
-                    $siswa->update($nisn[$i], $naikkelas);
+                    $siswa->update($nis[$i], $naikkelas);
                 }
                 $msg = [
                     'sukses' => 'Proses pembatalan kelulusan berhasil, siswa telah dikembalikan ke kelas masing-masing !'

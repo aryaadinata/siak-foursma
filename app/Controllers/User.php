@@ -19,5 +19,71 @@ class User extends BaseController
 
     public function admin()
     {
+        $userModel = new UserModel();
+        $loggedAdmin = session()->get('loggedAdmin');
+        $userInfo = $userModel->find($loggedAdmin);
+        $data = [
+            'title' => "Akun Admin",
+            'userInfo' => $userInfo,
+        ];
+        echo view('Layout/header', $data);
+        echo view('Layout/sidebar', $data);
+        echo view('User/viewUser', $data);
+        echo view('Layout/footer', $data);
+    }
+
+    function ambiladmin()
+    {
+        //if ($this->request->isAJAX()) {
+        $builder = $this->db->table('user');
+        $builder->select('*');
+        $builder->where("level", 0);
+        $query = $builder->get();
+        $admin = $query->getResultArray();
+        $data = [
+            'admin' => $admin,
+        ];
+        $msg = [
+            'data' => view('User/dataAdmin', $data)
+        ];
+        echo json_encode($msg);
+        // } else {
+        //     exit("Tidak dapat diproses");
+        // }
+    }
+
+    public function akun_ptk()
+    {
+        $userModel = new UserModel();
+        $loggedAdmin = session()->get('loggedAdmin');
+        $userInfo = $userModel->find($loggedAdmin);
+        $data = [
+            'title' => "Akun PTK",
+            'userInfo' => $userInfo,
+        ];
+        echo view('Layout/header', $data);
+        echo view('Layout/sidebar', $data);
+        echo view('User/viewUser', $data);
+        echo view('Layout/footer', $data);
+    }
+
+    function ambilptk()
+    {
+        //if ($this->request->isAJAX()) {
+        $builder = $this->db->table('user');
+        $builder->select('*');
+        $builder->where("level", 1);
+        $query = $builder->get();
+        $ptk = $query->getResultArray();
+        $data = [
+            'ptk' => $ptk,
+        ];
+        $msg = [
+            'data' => view('User/dataPTK', $data)
+        ];
+        echo json_encode($msg);
+        // } else {
+        //     exit("Tidak dapat diproses");
+        // }
     }
 }

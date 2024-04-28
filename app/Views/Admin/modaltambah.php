@@ -11,17 +11,17 @@
             <?= csrf_field(); ?>
             <div class="modal-body">
                 <div class="form-group row">
-                    <label for="" class="col-sm-4 col-form-label">NISN</label>
-                    <div class="col-sm-8">
-                        <input type="number" class="form-control" placeholder="Masukkan NISN Siswa" name="nisn" id="nisn">
-                        <div class="invalid-feedback errorNISN"></div>
-                    </div>
-                </div>
-                <div class="form-group row">
                     <label for="" class="col-sm-4 col-form-label">NIS</label>
                     <div class="col-sm-8">
                         <input type="number" class="form-control" placeholder="Masukkan NIS Siswa" name="nis" id="nis">
                         <div class="invalid-feedback errorNIS"></div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="" class="col-sm-4 col-form-label">NISN</label>
+                    <div class="col-sm-8">
+                        <input type="number" class="form-control" placeholder="Masukkan NISN Siswa" name="nisn" id="nisn">
+                        <div class="invalid-feedback errorNISN"></div>
                     </div>
                 </div>
                 <div class="form-group row">

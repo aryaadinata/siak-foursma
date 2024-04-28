@@ -13,8 +13,8 @@
                 <thead>
                     <tr>
                         <th class="no-sorting">No</th>
-                        <th>NISN</th>
                         <th>NIS</th>
+                        <th>NISN</th>
                         <th>NIK</th>
                         <th>Nama</th>
                         <th>Kelas</th>
@@ -29,15 +29,15 @@
                     ?>
                         <tr>
                             <td class="tengah"><?= $no ?></td>
-                            <td class="tengah"><?= $row["nisn"] ?></td>
                             <td class="tengah"><?= $row["nis"] ?></td>
+                            <td class="tengah"><?= $row["nisn"] ?></td>
                             <td class="tengah"><?= $row["nik"] ?></td>
                             <td><?= $row["nama"] ?></td>
                             <td class="tengah"><?= $row["nama_kelas"] ?></td>
                             <td class="tengah"><?= $row["tahun_masuk"] ?></td>
                             <td class="tengah">
-                                <a href="<?= base_url() ?>/Admin/biodatasiswa/<?= $row["nisn"] ?>" type="button" title="Edit" class="btn btn-flat btn-info btn-xs">detail</a>
-                                <button type="button" title="Hapus" class="btn btn-flat btn-danger btn-xs" onclick="hapus('<?= $row['nisn'] ?>')">hapus</button>
+                                <a href="<?= base_url() ?>/Admin/biodatasiswa/<?= $row["nis"] ?>" type="button" title="Edit" class="btn btn-flat btn-info btn-xs">detail</a>
+                                <button type="button" title="Hapus" class="btn btn-flat btn-danger btn-xs" onclick="hapus('<?= $row['nis'] ?>')">hapus</button>
                             </td>
                         </tr>
                     <?php endforeach; ?>

@@ -145,7 +145,7 @@
                   </li>
                   <li class="nav-item <?php if ($uri->getSegment(1) == 'User') echo 'menu-open';
                                         else  echo '' ?>">
-                      <a href="#" class="nav-link <?php if ($uri->getSegment(1) == 'USer') echo 'active';
+                      <a href="#" class="nav-link <?php if ($uri->getSegment(1) == 'User') echo 'active';
                                                     else  echo '' ?>">
                           <i class="nav-icon fas fa-users"></i>
                           <p>
@@ -155,15 +155,15 @@
                       </a>
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
-                              <a href="#" class="nav-link <?php if ($uri->getSegment(2) == 'user_admin' || $uri->getSegment(2) == 'viewimport') echo 'active';
-                                                            else  echo '' ?>">
+                              <a href="<?= base_url('/User/admin/') ?>" class="nav-link <?php if ($uri->getSegment(2) == 'admin') echo 'active';
+                                                                                        else  echo '' ?>">
                                   <i class="far fa-circle nav-icon"></i>
                                   <p>Admin</p>
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a href="#" class="nav-link <?php if ($uri->getSegment(2) == 'user_ptk') echo 'active';
-                                                            else  echo '' ?>">
+                              <a href="<?= base_url('/User/akun_ptk/') ?>" class="nav-link <?php if ($uri->getSegment(2) == 'akun_ptk') echo 'active';
+                                                                                            else  echo '' ?>">
                                   <i class="far fa-circle nav-icon"></i>
                                   <p>Akun PTK</p>
                               </a>

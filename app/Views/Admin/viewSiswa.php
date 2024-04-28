@@ -51,18 +51,18 @@
    })
 
 
-   function detail(nisn) {
+   function detail(nis) {
      $.ajax({
        type: "post",
        url: "<?= site_url('Admin/ambilbiodata') ?>",
        data: {
-         nisn: nisn
+         nis: nis
        },
        dataType: "json",
        beforeSend: function() {
          $(".tomboledit").removeClass("bg-gray").addClass("bg-pink");
          $(".tomboledit").removeAttr("disabled");
-         $(".tomboledit").attr("onclick", "edit(" + nisn + ")");
+         $(".tomboledit").attr("onclick", "edit(" + nis + ")");
          $(".tomboledit").html("<i class='fa fa-pencil-alt'></i> Edit Biodata");
        },
        success: function(response) {
@@ -75,12 +75,12 @@
      });
    }
 
-   function edit(nisn) {
+   function edit(nin) {
      $.ajax({
        type: "post",
        url: "<?= site_url('Admin/formeditbiodata') ?>",
        data: {
-         nisn: nisn
+         nis: nis
        },
        dataType: "json",
        success: function(response) {
@@ -90,7 +90,7 @@
        },
        complete: function() {
          $(".tomboledit").removeClass("bg-pink").addClass("bg-gray");
-         $(".tomboledit").attr("onclick", "detail(" + nisn + ")");
+         $(".tomboledit").attr("onclick", "detail(" + nis + ")");
          $(".tomboledit").html("<i class='fa fa-ban'></i> Batal Edit");
        },
        error: function(xhr, ajaxOption, trhownError) {
@@ -99,10 +99,10 @@
      })
    }
 
-   function hapus(nisn) {
+   function hapus(nis) {
      Swal.fire({
-       title: `Yakin Hapus ${nisn} ?`,
-       text: 'Data yang terhapus tidak dapat dikembalikan !',
+       title: `Yakin Hapus ${nis} ?`,
+       text: 'Seluruh data yang berkaitan dengan siswa tersebut akan hilang, data yang terhapus tidak dapat dikembalikan !',
        icon: 'warning',
        showCancelButton: true,
        confirmButtonColor: '#3085d6',
@@ -115,7 +115,7 @@
            type: "post",
            url: "<?= site_url('Admin/hapussiswa') ?>",
            data: {
-             nisn: nisn
+             nis: nis
            },
            dataType: "json",
            success: function(response) {

@@ -47,7 +47,7 @@ if (!empty($session->getFlashdata('suksesupload'))) {
             <h3 class="card-title p-3"><i class="fas fa-user" style="color: #1b3e72;"></i> Biodata Siswa</h3>
             <ul class="nav nav-pills ml-auto p-2">
               <li class="nav-item"><a href="<?= base_url() . "/Admin/data_siswa" ?>" id="btnKembali" class="btn btn-flat nav-link bg-gray"><i class=" fas fa-arrow-left"></i> Kembali</a></li>
-              <li class="nav-item"><a href="#" class="nav-link btn btn-flat bg-pink tomboledit" onclick="edit('<?= $siswa['nisn'] ?>')"><i class=" fas fa-pencil-alt"></i> Edit Biodata</a></li>
+              <li class="nav-item"><a href="#" class="nav-link btn btn-flat bg-pink tomboledit" onclick="edit('<?= $siswa['nis'] ?>')"><i class=" fas fa-pencil-alt"></i> Edit Biodata</a></li>
             </ul>
           </div>
           <!-- /.card-header -->
@@ -81,7 +81,7 @@ if (!empty($session->getFlashdata('suksesupload'))) {
             <div class="form-group">
               <div class="custom-file">
                 <input type="file" class="custom-file-input <?= $classFoto ?>" id="foto" name="foto">
-                <input type="hidden" name="nisn" id="nisn" value="<?= $siswa["nisn"] ?>">
+                <input type="hidden" name="nis" id="nis" value="<?= $siswa["nis"] ?>">
                 <label class="custom-file-label" for="customFile">Pilih Foto</label>
                 <div class="invalid-feedback"><?= $pesanFoto ?></div>
               </div>
@@ -105,15 +105,15 @@ if (!empty($session->getFlashdata('suksesupload'))) {
 <!-- /.content-wrapper -->
 
 <script>
-  function biodatasiswa(nisn) {
+  function biodatasiswa(nis) {
     $.ajax({
       type: "post",
-      url: "<?= site_url('Admin/ambilbiodata/') ?><?= $siswa["nisn"] ?>",
+      url: "<?= site_url('Admin/ambilbiodata/') ?><?= $siswa["nis"] ?>",
       dataType: "json",
       beforeSend: function() {
         $(".tomboledit").removeClass("bg-gray").addClass("bg-pink");
         $(".tomboledit").removeAttr("disabled");
-        $(".tomboledit").attr("onclick", "edit('<?= $siswa['nisn'] ?>')");
+        $(".tomboledit").attr("onclick", "edit('<?= $siswa['nis'] ?>')");
         $(".tomboledit").html("<i class='fa fa-pencil-alt'></i> Edit Biodata");
         $('.viewdata').html('<div class="overlay"><h3><i class="fa fa-spin fa-spinner"></i> Loading...</h3></div>');
       },
@@ -132,12 +132,12 @@ if (!empty($session->getFlashdata('suksesupload'))) {
     biodatasiswa();
   })
 
-  function edit(nisn) {
+  function edit(nis) {
     $.ajax({
       type: "post",
       url: "<?= site_url('Admin/formeditbiodata') ?>",
       data: {
-        nisn: nisn
+        nis: nis
       },
       dataType: "json",
       beforeSend: function() {

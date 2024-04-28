@@ -8,7 +8,7 @@
          SMA Negeri 4 Singaraja
      </div>
      <!-- Default to the left -->
-     <strong>Copyright &copy; 2023 <a href="<?= base_url() ?>">Siwatma</a>.</strong> Developed with ❤️ by <b>Arya Adinata</b>
+     <strong>Copyright &copy; 2024 <a href="<?= base_url() ?>">Siwatma</a>.</strong> Developed with ❤️ by <b>Arya Adinata</b>
  </footer>
  </div>
  <!-- ./wrapper -->

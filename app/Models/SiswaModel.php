@@ -7,9 +7,9 @@ use CodeIgniter\Model;
 class SiswaModel extends Model
 {
     protected $table = "siswa";
-    protected $primaryKey = "nisn";
+    protected $primaryKey = "nis";
     protected $allowedFields = [
-        "nisn", "nisn_en", 'nis', 'nik', 'nama', 'tempat_lahir', 'tanggal_lahir', 'jk',  'agama', "alamat", 'no_hp', 'email', 'alamat_ortu',
+        "nis", "nis_en", 'nisn', 'nik', 'nama', 'tempat_lahir', 'tanggal_lahir', 'jk',  'agama', "alamat", 'no_hp', 'email', 'alamat_ortu',
         'nama_ayah', "nama_ibu", "sekolah_asal", "foto", "tahun_masuk", 'id_kelas', "status_aktif", "tahun_out"
     ];
 

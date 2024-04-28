@@ -226,7 +226,7 @@ class Siswa extends BaseController
         $valid = $this->validate([
             'foto' => [
                 'label' => "Foto",
-                'rules' => 'uploaded[foto]|ext_in[foto,jpg,jpeg,png]|max_size[foto,1024]|mime_in[foto,image/jpg,image/jpeg,image/png]',
+                'rules' => 'uploaded[foto]|ext_in[foto,jpg]|max_size[foto,1024]|mime_in[foto,image/jpg,image/jpeg,image/png]',
                 'errors' => [
                     'uploaded' => 'Pilih {field} Terlebih Dahulu !',
                     'ext_in' => '{field} harus ekstensi jpg, jpeg atau png',

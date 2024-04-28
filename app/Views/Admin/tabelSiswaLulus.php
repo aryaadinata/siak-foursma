@@ -3,7 +3,7 @@
         <tr>
             <th class="no-sorting"><input class="" type="checkbox" id="checkAll2"></th>
             <th>No</th>
-            <th>NISN</th>
+            <th>NIS</th>
             <th>Nama</th>
             <th>Kelas</th>
             <th>Tahun Lulus</th>
@@ -15,9 +15,9 @@
             $no++;
         ?>
             <tr>
-                <th><input type="checkbox" value="<?= $row["nisn"] ?> " class="checkItem2"></th>
+                <th><input type="checkbox" value="<?= $row["nis"] ?> " class="checkItem2"></th>
                 <td><?= $no ?></td>
-                <td><?= $row["nisn"] ?></td>
+                <td><?= $row["nis"] ?></td>
                 <td><?= $row["nama_siswa"] ?></td>
                 <td><?= $row["nama_kelas"] ?></td>
                 <td><?= $row["tahun"] ?></td>

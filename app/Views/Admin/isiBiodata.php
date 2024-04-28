@@ -2,14 +2,14 @@
     <table class="table">
         <tbody>
             <tr>
-                <td>NISN</td>
-                <td>:</td>
-                <td><?= $siswa[0]["nisn"]; ?></td>
-            </tr>
-            <tr>
                 <td>NIS</td>
                 <td>:</td>
                 <td><?= $siswa[0]["nis"]; ?></td>
+            </tr>
+            <tr>
+                <td>NISN</td>
+                <td>:</td>
+                <td><?= $siswa[0]["nisn"]; ?></td>
             </tr>
             <tr>
                 <td>Kelas</td>
