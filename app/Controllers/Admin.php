@@ -384,9 +384,8 @@ class Admin extends BaseController
                     ],
                     'email' => [
                         'label' => "Email",
-                        'rules' => "required|is_unique[siswa.email]|valid_email",
+                        'rules' => "permit_empty|is_unique[siswa.email]|valid_email",
                         'errors' => [
-                            'required' => '{field} wajib diisi !',
                             'is_unique' => '{field} sudah terdaftar !',
                             'valid_email' => "{field} tidak valid"
                         ]
@@ -398,13 +397,13 @@ class Admin extends BaseController
                             'required' => '{field} tidak boleh kosong !'
                         ]
                     ],
-                    'kelas' => [
-                        'label' => "Kelas",
-                        'rules' => "required",
-                        'errors' => [
-                            'required' => '{field} wajib dipilih !'
-                        ]
-                    ],
+                    // 'kelas' => [
+                    //     'label' => "Kelas",
+                    //     'rules' => "required",
+                    //     'errors' => [
+                    //         'required' => '{field} wajib dipilih !'
+                    //     ]
+                    // ],
                     'tahun_masuk' => [
                         'label' => "Tahun Masuk",
                         'rules' => "required|",
@@ -422,7 +421,7 @@ class Admin extends BaseController
                         'nik' => $validation->getError('nik'),
                         'email' => $validation->getError('email'),
                         'nama_siswa' => $validation->getError('nama_siswa'),
-                        'kelas' => $validation->getError('kelas'),
+                        //'kelas' => $validation->getError('kelas'),
                         'tahun_masuk' => $validation->getError('tahun_masuk'),
                     ]
                 ];
@@ -465,7 +464,7 @@ class Admin extends BaseController
         if ($this->request->isAJAX()) {
             $siswa = new SiswaModel();
             $user = new UserModel();
-            $id = "0987654321";
+            $id = $this->request->getVar("nis");
 
             $siswaInfo = $siswa->find($id);
             if (!empty($siswaInfo['foto'])) {

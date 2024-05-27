@@ -3,6 +3,7 @@
         <tr>
             <th class="no-sorting">No</th>
             <th>Username</th>
+            <th>Nama</th>
             <th>Level</th>
             <th>Actions</th>
         </tr>
@@ -16,6 +17,7 @@
             <tr>
                 <td class="tengah"><?= $no ?></td>
                 <td class="tengah"><?= $row["username"] ?></td>
+                <td class="tengah"><?= $row["nama"] ?></td>
                 <td class="tengah"><?php if ($row["level"] == 1) echo "PTK" ?></td>
                 <td class="tengah">
                     <a href="<?= base_url() ?>/lihatguru/<?= $row["username"] ?>" type="button" title="Edit" class="btn btn-flat btn-info btn-xs">detail</a>

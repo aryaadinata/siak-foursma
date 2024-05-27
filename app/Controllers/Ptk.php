@@ -114,9 +114,8 @@ class Ptk extends BaseController
                     ],
                     'nuptk' => [
                         'label' => "NUPTK",
-                        'rules' => "required|is_unique[ptk.nuptk]",
+                        'rules' => "is_unique[ptk.nuptk]",
                         'errors' => [
-                            'required' => '{field} tidak boleh kosong',
                             'is_unique' => '{field} sudah terdaftar !',
                         ]
                     ],
@@ -164,9 +163,8 @@ class Ptk extends BaseController
                     ],
                     'email' => [
                         'label' => "Email",
-                        'rules' => "required|valid_email|is_unique[ptk.email]",
+                        'rules' => "permit_empty|valid_email|is_unique[ptk.email]",
                         'errors' => [
-                            'required' => '{field} tidak boleh kosong !',
                             'valid_email' => '{field} tidak valid !',
                             'is_unique' => '{field} sudah terdaftar !'
                         ]
@@ -664,7 +662,7 @@ class Ptk extends BaseController
             $jenis_ptk = 1;
         }
         $data = [
-            'title' => "Import PTK | SKL Foursma",
+            'title' => "Import PTK",
             'jenis_ptk' => $jenis_ptk,
             'userInfo' => $userInfo,
         ];

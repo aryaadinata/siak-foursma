@@ -18,13 +18,33 @@
    </div>
    <!-- /.content-header -->
 
-   <!-- Main content -->
    <div class="content">
-     <div class="row viewdata"></div>
+     <div class="container-fluid">
+       <div class="row">
+         <div class="col-lg-12">
+           <div class="card">
+             <div class="card-header d-flex p-0">
+               <h3 class="card-title p-3">Tabel <?= $title ?></h3>
+               <ul class="nav nav-pills ml-auto p-2">
+                 <li class="nav-item btn-primary"><a href="" class="nav-link tomboltambah" style="color:aliceblue"><i class="fas fa-plus"></i> Tambah</a></li>
+                 <li class="nav-item btn-info"><a href="<?php if ($title == "Data Guru") echo base_url('importguru');
+                                                        else echo base_url('importpegawai'); ?>" class="nav-link" style="color:aliceblue"><i class="fas fa-file-import"></i> Import</a></li>
+               </ul>
+             </div>
+             <!-- /.card-header -->
+             <div class="card-body">
+               <p class="card-text viewdata">
 
-   </div><!-- /.container-fluid -->
- </div>
- <!-- /.content -->
+               </p>
+             </div>
+             <!-- /.card-body -->
+           </div>
+           <!-- /.card -->
+         </div>
+       </div>
+       <!-- /.row -->
+     </div><!-- /.container-fluid -->
+   </div>
  </div>
  <!-- /.content-wrapper -->
 
@@ -38,7 +58,7 @@
          type: "POST",
          dataType: "json",
          beforeSend: function() {
-           $(".loadtable").html('<div class="overlay"><h3><i class="fa fa-spin fa-spinner"></i> Loading...</h3></div>');
+           $(".viewdata").html('<div class="overlay"><h3><i class="fa fa-spin fa-spinner"></i> Loading...</h3></div>');
          },
          success: function(response) {
            $('.viewdata').html(response.data);
@@ -147,7 +167,7 @@
          type: "POST",
          dataType: "json",
          beforeSend: function() {
-           $(".loadtable").html('<div class="overlay"><h3><i class="fa fa-spin fa-spinner"></i> Loading...</h3></div>');
+           $(".viewdata").html('<div class="overlay"><h3><i class="fa fa-spin fa-spinner"></i> Loading...</h3></div>');
          },
          success: function(response) {
            $('.viewdata').html(response.data);

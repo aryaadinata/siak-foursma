@@ -1,49 +1,34 @@
-<div class="col-lg-12">
-    <div class="card">
-        <div class="card-header d-flex p-0">
-            <h3 class="card-title p-3">Data Pegawai</h3>
-            <ul class="nav nav-pills ml-auto p-2">
-                <li class="nav-item"><a href="" class="nav-link bg-primary btn btn-flat tomboltambah" style="color:aliceblue"><i class="fas fa-plus"></i> Tambah</a></li>
-                <li class="nav-item"><a href="/importpegawai" class="nav-link bg-info btn btn-flat" style="color:aliceblue"><i class="fas fa-download"></i> Import</a></li>
-            </ul>
-        </div>
-        <!-- /.card-header -->
-        <div class="card-body">
-            <table id="example1" class="table table-bordered table-striped loadtable">
-                <thead>
-                    <tr>
-                        <th class="no-sorting">No</th>
-                        <th>NIK</th>
-                        <th>Nama</th>
-                        <th>NIP / NIPPPK</th>
-                        <th>Status Kepegawaian</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php $no = 0;
-                    foreach ($pegawai as $row) :
-                        $no++;
-                    ?>
-                        <tr>
-                            <td class="tengah"><?= $no ?></td>
-                            <td class="tengah"><?= $row["nik_ptk"] ?></td>
-                            <td><?= $row["nama_ptk"] ?></td>
-                            <td class="tengah"><?= $row["nip"] ?></td>
-                            <td class="tengah"><?= $row["status_pegawai"] ?></td>
-                            <td class="tengah">
-                                <a href="<?= base_url() ?>/lihatpegawai/<?= $row["nik_ptk"] ?>" type="button" title="Detail" class="btn btn-flat btn-info btn-xs">detail</a>
-                                <button type="button" title="Hapus" class="btn btn-flat btn-danger btn-xs" onclick="hapus('<?= $row['nik_ptk'] ?>')">hapus</button>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        </div>
-        <!-- /.card-body -->
-    </div>
-    <!-- /.card -->
-</div>
+<table id="example1" class="table table-bordered table-striped loadtable">
+    <thead>
+        <tr>
+            <th class="no-sorting">No</th>
+            <th>NIK</th>
+            <th>Nama</th>
+            <th>NIP / NIPPPK</th>
+            <th>Status Kepegawaian</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php $no = 0;
+        foreach ($pegawai as $row) :
+            $no++;
+        ?>
+            <tr>
+                <td class="tengah"><?= $no ?></td>
+                <td class="tengah"><?= $row["nik_ptk"] ?></td>
+                <td><?= $row["nama_ptk"] ?></td>
+                <td class="tengah"><?= $row["nip"] ?></td>
+                <td class="tengah"><?= $row["status_pegawai"] ?></td>
+                <td class="tengah">
+                    <a href="<?= base_url() ?>/lihatpegawai/<?= $row["nik_ptk"] ?>" type="button" title="Detail" class="btn btn-flat btn-info btn-xs">detail</a>
+                    <button type="button" title="Hapus" class="btn btn-flat btn-danger btn-xs" onclick="hapus('<?= $row['nik_ptk'] ?>')">hapus</button>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+
 <script>
     $(document).ready(function() {
         $('.tomboltambah').click(function(e) {

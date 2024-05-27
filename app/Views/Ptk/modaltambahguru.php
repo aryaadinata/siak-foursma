@@ -119,7 +119,7 @@
                 <div class="form-group row">
                     <label for="" class="col-sm-4 col-form-label">Email</label>
                     <div class="col-sm-8">
-                        <input type="email" class="form-control" placeholder="Masukkan Alamat Email Aktif" name="email" id="email">
+                        <input type="text" class="form-control" placeholder="Masukkan Alamat Email Aktif" name="email" id="email">
                         <div class="invalid-feedback errorEmail"></div>
                     </div>
                 </div>
